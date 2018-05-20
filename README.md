@@ -34,7 +34,7 @@ zhengdaoyu 证道玉扫描器
 │  │  ├─Inject 注入检测功能
 │  │  │  ├─Sqlmap-Api sqlmapapi接口调用子功能
 │  │  │  ├─FingerInject 自定义根据各种情景变化注入子功能
-│  │  │  └─X-waf 自动化爆破waf功能
+│  │  │  └─X-waf 自动化爆破waf子功能
 │  │  ├─PocScan 批量poc测试功能
 │  │  ├─xss xss漏洞检测功能，包含dom检测方式
 │  │  ├─RCE 命令执行/代码执行检测功能
@@ -84,7 +84,7 @@ zhengdaoyu 证道玉扫描器
 
 ps：其中x-waf来自于大佬 https://github.com/3xp10it/bypass_waf 的项目;
 尽管我重构了相当多代码，但是依然使用大佬项目名字以示尊重。
-
+其中被动扫描模块参考了nagascan的proxy模式。
 ```
 
 以上python项目应该不会开源。go扫描器正在开源路上，逐一完成。如对本人算法项目，机器学习，深度学习项目感兴趣的话，请移步本人另一个github。
