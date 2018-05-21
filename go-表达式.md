@@ -212,3 +212,133 @@ for { // 替代 while (true) {}
 println(s) // 替代 for (;;) {}
 }
 ```
+* 初始化语句仅被执行一次。条件表达式中如有函数调用，需确认是否会有重复执行。可能会被编译器优化掉。
+* 可用for range完成数据迭代，支持字符串，数组，数组指针，切片，字典，通道类型，返回索引，键值数据。
+
+```
+data          type 1st       value 2nd value
+-------------+----------------+-----------------------+-------------
+string        index          s[index]              unicode,rune
+array/alice   index          v[index]
+map           key value
+channel       element
+```
+code:
+
+```
+func main() {
+  data := [3]string{"a", "b", "c"}
+
+ for i, s := range data {
+   println(i, s)
+ }
+}
+```
+输出：
+```
+0 a
+1 b
+2 c
+```
+#### `没有相关接口显式自定义类型迭代，除非基础类型是上述类型之一`
+
+* 允许返回单值，或用 `_ ` 忽略
+code：
+```
+func main() {
+  data :=[3]string{"a", "b", "c"}
+
+  for i := range data{             //只返回单值1st value
+    println(i, data[i])
+  }
+  for _, s := range data {        //忽略1st value
+    println(s)
+  }
+
+  for range data{                  //仅迭代，不反悔，可用来执行清空channel等操作。
+
+  }
+}
+```
+* 无论普通for循环，还是range迭代，其定义的局部变量都会重复使用
+code：
+```
+func main() {
+  data := [3]string{"a", "b", "c"}
+
+  for i, s =: range data {
+    println(&i, &s)
+  }
+}
+```
+* 注意 range 会复制目标数据，收直接影响的书数字，可改用数组指针或切片类型。
+
+* 相关数据类型中，字符串切片基本结构是个很小的结构体，而字典 通道本身是真真邓庄，赋值成本都很小，无需专门优化。
+
+* 如果range 目标表达式是函数调用，也仅被执行一次。
+* 建议嵌套循环不要超过两层
+
+### goto， continue ， break
+
+* 使用goto前，需先定义标签。标签区分大小写，且未使用的标签会引发编译器的错误。
+code:
+```
+func main() {
+  start:
+    for i := ; i < 3, i++ { //error:label start defined and not used
+      println(i)
+
+      if i > 1 {
+        goto exit
+      }
+    }
+    exit:
+       println("exit.")
+}
+```
+* 不能跳转到其他函数，或内层代码执行
+
+code:
+
+```
+func test() {
+  test:
+  println("test")
+  println("test exit.")
+}
+
+func main() {
+  for i := 0; i < 3; i++ {
+    loop:
+      println(i)
+  }
+
+  goto test             //error:label test not defined
+  goto loop             //error: goto loop jumps into block
+}
+```
+* 和goto定点挑战不同， break、continue用于终端代码块执行。
+
+* break 用于switch for select 语句，终止整个语句块的执行。
+* continue 仅用于for循环，终止后续逻辑，立即进入下一轮循环。
+code：
+
+```
+func main () {
+  for i := 0; i < 3; i++ {
+    continue                  //立即进入下一轮循环
+  }
+
+  if i > 5 {
+    break                   //立即终止整个for循环
+  }
+   println(i)
+}
+```
+输出：
+```
+1
+3
+5
+```
+* 配合标签，break和continue可在多层嵌套中指定目标层级。
