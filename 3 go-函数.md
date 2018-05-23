@@ -18,7 +18,7 @@
 * 函数属于第一类对象，具备相同签名（参数及返回值列表）的视作同一类型。
 code：
 
-```
+```go
 func hello() {
    println("hello,sir!")
 }
@@ -38,7 +38,7 @@ func main(){
 
 code：
 
-```
+```go
 // 定义函数类型
 type formatFunc(string, ...interface{}) (string, error)
 
@@ -50,7 +50,7 @@ type format(f formatFunc, s string, a...interface{}) (string, error) {
 * 函数只能判断是否为nil 不支持其他比较操作。
 
 code：
-```
+```go
 func a...
 func b...
 println(a == nil)
@@ -60,7 +60,7 @@ println(a == b)  // 无效操作
 
 code：
 
-```
+```go
 func test() *int {
   a := 0x100
   return &a
@@ -101,7 +101,8 @@ go对参数的处理偏向保守，不支持有默认值的可选参数，不支
 * 在参数列表中，相邻的同类型参数可合并
 
 code：
-```
+
+```go
 func test(x, y int, s string, _ bool) *int {
    return nil
 }
@@ -115,7 +116,7 @@ func main() {
 
 code：
 
-```
+```go
 func add(x, y int) int {
   x := 100                       //error : no new variables on the left side of :=
   var y int                       // error : y redeclared in this block
@@ -128,7 +129,7 @@ func add(x, y int) int {
 
 code：
 
-```
+```go
 func test(x *int) {
    fmt.printf("pointer: %p, target: %v\n", &x, x)         //输出形参x的地址
 }
@@ -146,7 +147,8 @@ func main() {
 * 下面是一个指针参数导致实参变量被分配到堆上的简单实例，可对比传值参数的汇编代码，可看出具体的差别。
 
 code：
-```
+
+```go
 func test(p *int) {
    go func(){
      println(p)                //延长p的生命周期
@@ -160,6 +162,7 @@ func main() {
 }
 ```
 输出：
+
 ```
 $ go build -gcflags "-m"           //输出编译器优化策略
 
@@ -176,7 +179,8 @@ CALL runtime.newobject(SB)                //在堆上为x分配内存
 * 要实现传出参数（out），通常建议使用返回值，也可以继续用二级指针。
 
 code：
-```
+
+```go
 func test(p **int) {
    x := 100
    *p = &x
@@ -190,12 +194,14 @@ func main() {
 }
 ```
 输出：
+
 100
 
 * 如果函数参数过多，建议将其重构成一个复合结构类型，也算是变相实现可选参数和命名实参的功能。
 
 code：
-```
+
+```go
 type serverOption struct {
    address string
    port    int
@@ -230,7 +236,8 @@ func main() {
 
 变参本质上就是切片slice。
 只能有一个，且必须是最后一个，即列表尾部。
-```
+
+```go
 func test(s string, n ...int) string {
     var x int
     for _, i := range n {
@@ -247,7 +254,7 @@ func main() {
 
 使用切片 slice 对象做变参时，必须展开。
 
-```
+```go
 func main() {
   s := []int{1, 2, 3}
   println(test("sum: %d", s...))
@@ -257,7 +264,7 @@ func main() {
 
 * 有返回值的函数，必须有明确的return终止语句。
 
-```
+```go
 func test(x int) int {
   if x > 0 {
      return 1
@@ -269,7 +276,7 @@ func test(x int) int {
 
 * 除非有painc，或者无break的死循环，则无需return终止语句。
 
-```
+```go
 func test(x int) int {
    for {
      break
@@ -279,7 +286,7 @@ func test(x int) int {
 
 * 借鉴自动态语言的多分返回值模式，函数得以返回更多状态，尤其是error模式。
 
-```
+```go
 import "error"
 
 func div(x, y int) (int, error) {
@@ -294,7 +301,7 @@ func div(x, y int) (int, error) {
 
 * 多返回值可直接作为其他函数调用实参。<br>
 
-```
+```go
 func test() (int, int) {
   return 1, 2
 }
@@ -320,7 +327,7 @@ func main() {
 
 * 命名返回参数可看做与形参类似的局部变量，最后由 return 隐式返回。<br>
 
-```
+```go
 func add(x, y int) (z int) {
   z = x + y
   return
@@ -333,7 +340,7 @@ func main() {
 
 * 命名返回参数可被同名局部变量遮蔽，此时需要显式返回。<br>
 
-```
+```go
 func add(x, y int) (z int) {
     {                           // 不能在一个级别，引发 "z redeclared in this block" 错误。
     var z = x + y
@@ -345,7 +352,7 @@ func add(x, y int) (z int) {
 
 * 命名返回参数允许 defer 延迟调用通过闭包读取和修改。
 
-```
+```go
 func add(x, y int) (z int) {
     defer func() {
     z += 100
@@ -361,7 +368,7 @@ func main() {
 
 * 显式 return 返回前，会先修改命名返回参数。
 
-```
+```go
 func add(x, y int) (z int) {
     defer func() {
     println(z) // 输出: 203
@@ -392,7 +399,7 @@ func paging(sql string, index nil) (count int, pages int, err error) {
 
 * 匿名函数可赋值给变量，做为结构字段，或者在 channel 里传送。
 
-```
+```go
 // --- function variable ---
 
 fn := func() { println("Hello, World!") }
@@ -426,7 +433,7 @@ println((<-fc)())
 * 闭包复制的是原对象指针，这就很容易解释延迟引用现象。
 * 闭包（closure）是在其词法上下文中引用了自由变量的函数，或者说是函数和其引用的环境的组合体。
 
-```
+```go
 func test() func() {
     x := 100
     fmt.Printf("x (%p) = %d\n", &x, x)
@@ -440,11 +447,14 @@ func main() {
     f()
 }
 ```
+
 输出：
+
 ```
 x (0x2101ef018) = 100
 x (0x2101ef018) = 100
 ```
+
 * 在汇编层面，test 实际返回的是 FuncVal 对象，其中包含了匿名函数地址、闭包对象指
 针。当调用匿名函数时，只需以某个寄存器传递该对象即可。
 * 通过输出指针，我们注意到闭包直接引用了原环境变量。分析汇编代码，返回值不仅是匿名函数还包括了引用的环境变量指针。
@@ -455,7 +465,7 @@ FuncVal { func_address, closure_var_pointer ... }
 ```
 * 闭包通过指针引用缓解经变量，会导致生命周期延长，甚至会被分配到堆内存，所谓“延迟求值”的特征。
 
-```
+```go
 func test() []func() {
   var s []func()
 
@@ -481,7 +491,7 @@ func main() {
 
 * 关键字 defer 用于注册延迟调用。这些调用直到 return 前才被执行，通常用于释放资源或错误处理。
 
-```
+```go
 func test() error {
   f, err := os.Create("test.txt")
   if err != nil { return err }
@@ -493,7 +503,7 @@ func test() error {
 
 * 多个 defer 注册，按 FILO 次序执⾏行。哪怕函数或某个延迟调用发生错误，这些调用依旧会被执行。
 
-```
+```go
 func test(x int) {
   defer println("a")
   defer println("b")
@@ -519,7 +529,7 @@ panic: runtime error: integer divide by zero
 
 * 延迟调用参数在注册时求值或复制，可用指针或闭包 "延迟" 读取。
 
-```
+```go
 func test() {
   x, y := 10, 20
   defer func(i int) {
@@ -537,7 +547,7 @@ defer: 10 120
 ```
 * 滥用 defer 可能会导致性能问题，尤其是在一个 "大循环" 里。
 
-```
+```go
 var lock sync.Mutex
   func test() {
   lock.Lock()
@@ -571,7 +581,7 @@ BenchmarkTestDefer 20000000 128 ns/op
 
 * 没有结构化异常，使用 panic 抛出错误，recover 捕获错误。
 
-```
+```go
 func test() {
     defer func() {
     if err := recover(); err != nil {
@@ -583,13 +593,13 @@ func test() {
 ```
 * 由于 panic、recover 参数类型为 interface{}，因此可抛出任何类型对象。
 
-```
+```go
 func panic(v interface{})
 func recover() interface{}
 ```
 * 延迟调用中引发的错误，可被后续延迟调用捕获，但仅最后一个错误可被捕获。
 
-```
+```go
 func test() {
     defer func() {
     fmt.Println(recover())
@@ -611,7 +621,7 @@ defer panic
 
 * 捕获函数 recover 只有在延迟调用内直接调用才会终止错误，否则总是返回 nil。任何未捕获的错误都会沿调用堆栈向外传递。
 
-```
+```go
 func test() {
     defer recover()                            // 无效！
     defer fmt.Println(recover())               // 无效！
@@ -629,7 +639,7 @@ func main() {
 }
 ```
 输出：
-```
+```go
 defer inner
 <nil>
 panic: test panic
@@ -637,7 +647,7 @@ panic: test panic
 
 * 使用延迟匿名函数或下面这样都是有效的。
 
-```
+```go
 func except() {
   recover()
 }
@@ -650,7 +660,7 @@ func test() {
 
 * 如果需要保护代码片段，可将代码块重构成匿名函数，如此可确保后续代码被执行。
 
-```
+```go
 func test(x, y int) {
     var z int
     func() {
@@ -674,7 +684,7 @@ Error() string
 
 * 标准库 errors.New 和 fmt.Errorf 函数用于创建实现 error 接口的错误对象。通过判断错误对象实例来确定具体错误类型。
 
-```
+```go
 var ErrDivByZero = errors.New("division by zero")
 func div(x, y int) (int, error) {
   if y == 0 { return 0, ErrDivByZero }
