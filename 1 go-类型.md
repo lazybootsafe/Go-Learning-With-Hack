@@ -11,18 +11,21 @@
 
 关键字var用于定义变量，类型放在变量名后。运行时内存分配操作会确保变量自动初始化为二进制零值（zero value），避免出现不可控行为。
 如显式提供初始化值，可省略变量类型，有编译器推断。
-```
+
+```go
 var x int     //自动初始化为0
 var y = false //自动推断为bool类型
 ```
 可一次定义多个变量，包括用不同初始值定义不同类型
-```
+
+```go
 var x, y int  //相同类型的多个变量
 var a, s = 100, "abc"   //不同类型的初始化值
 ```
 
 按照编程习惯，建议以组的方式整理多行变量定义，即用大括号美观一点。
-```
+
+```go
 var {
   x, y int
   a, s =100, "abc"
@@ -31,7 +34,8 @@ var {
 
 ### 简短模式（short variable declaration）
 除var关键词外，还能使用如下模式
-```
+
+```go
 func main(){
   x := 100
   a, s :=1, "abc"
@@ -46,7 +50,8 @@ func main(){
 
 简短模式不一定总是重新定义变量，也可能是部分退化的赋值操作。
 退化赋值的前提条件是 最少有一个新变量被定义且必须是同一作用域。
-```
+
+```go
 func main(){
   x := 100
   println(&x)
@@ -57,7 +62,8 @@ func main(){
 ```
 输出：
 ![1.png](/screenshot/1.png)
-```
+
+```go
 func main(){
   x := 100
   println(&x，x)
@@ -68,7 +74,8 @@ func main(){
 }
 ```
 在处理函数错误返回值时，退化赋值允许我们重复使用err变量
-```
+
+```go
 package main
 
 import {
@@ -87,7 +94,8 @@ func main() {
 
 ### 多变量赋值
 先计算出所有右值，再依次完成赋值操作。
-```
+
+```go
 func main(){
   x, y := 1,2
   x, y = y+3, x+2
@@ -111,7 +119,7 @@ go语言的神奇之处，编译器讲未使用的局部变量当做错误，虽
 ### 空标识符
 和python类似，go也有一个名为 `_` 的特殊成员（blank identifier）。通常作为忽略占位符使用，可做表达式，无法读取内容。
 
-```
+```go
 import "strconv"
 
 func main() {
@@ -133,7 +141,8 @@ func main() {
 * 在常量组中如不能指定类型和初始化值，则与上一行非空常量右值（表达式文本）相同。
 
 例子：
-```
+
+```go
 import "fmt"
 
 func main() {
@@ -156,7 +165,7 @@ string, abc
 
 go语言没有明确意义上的enum定义，但是可借助iota标识符实现一组自增常量值来实现枚举类型。
 
-```
+```go
 const(
   x = iota //0
   y        //1
@@ -171,7 +180,8 @@ const(
 ### 展开
 
 不同于变量在运行期分配存储内存，常量通常会被编译器在预处理阶段直接展开，作为指令数据使用。
-```
+
+```go
 const y = 0x200
 
 func main() {
@@ -191,6 +201,7 @@ func main() {
 ### 别名
 
 在官方的规范中，专门提到有两个别名：
+
 ```
  byte alis for uint8
  tune alis for int32
@@ -215,7 +226,8 @@ func main() {
 ### 语法歧义
 
 如果转换的目标是指针，单向通道或没有返回值的函数类型，那么必须使用括号，以避免语法分解错误。
-```
+
+```go
 func main() {
   x := 100
   p := *int(&x)    //error : cannot convert &x (type *int) to type int32
@@ -223,7 +235,8 @@ func main() {
 }
 ```
 正确的做法是用括号，让编译器 讲*int解析为指针类型
-```
+
+```go
 *Point(p) // 相当于 *(Point(p))
 (*Point)(p)
 <-chan int(c) // 相当于 <-(chan int(c))
@@ -253,7 +266,7 @@ slice、map 等和具体元素类型、长度等有关，属于未命名类型�
 * 将默认值nil赋值给切片 字典 通道 指针 函数 接口
 * 对象实现了目标接口
 
-```
+```go
 x := 1234
 var b bigint = bigint(x) // 必须显式转换，除⾮非是常量。
 var b2 int64 = int64(b)
