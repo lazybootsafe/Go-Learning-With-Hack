@@ -4,7 +4,7 @@
 ## 7.1 Goroutine
 
 * Go 在语言层面对并发编程提供支持，一种类似协程，称作 goroutine 的机制。
-* 只需在函数调⽤用语句前添加 go 关键字，就可创建并发执行单元。
+* 只需在函数调用语句前添加 go 关键字，就可创建并发执行单元。
 * 开发人员无需了解任何执行细节，调度器会自动将其安排到合适的系统线程上执行。
 * goroutine 是一种非常轻量级的实现，可在单个进程⾥里执⾏行成千上万的并发任务。
 * 入口函数 main 就以 goroutine 运行。另有与之配套的 channel 类型，用以实现 "以通讯来共享内存" 的 CSP 模式。
@@ -72,10 +72,10 @@ func main() {
 
         func() {
           defer println("B.defer")
-          runtime.Goexit() // 终⽌止当前 goroutine
-          println("B") // 不会执⾏行
+          runtime.Goexit() // 终止当前 goroutine
+          println("B") // 不会执行
         }()
-      println("A") // 不会执⾏行
+      println("A") // 不会执行
     }()
     wg.Wait()
 }
@@ -186,7 +186,7 @@ func main() {
 }
 ```
 
-* 缓冲区是内部属性，并⾮非类型构成要素。
+* 缓冲区是内部属性，并非类型构成要素。
 
 ```
 var a, b chan int = make(chan int), make(chan int, 3)
@@ -368,7 +368,7 @@ func main() {
             }
         }(i)
     }
-    time.Sleep(time.Second * 5) // 让测试 goroutine 运⾏行⼀一会。
+    time.Sleep(time.Second * 5) // 让测试 goroutine 运行一会。
     close(quit) // 发出退出通知。
     wg.Wait()
 }
