@@ -1,0 +1,1 @@
+go install 安装目录
