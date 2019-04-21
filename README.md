@@ -30,7 +30,7 @@ screenshot 对应代码截图等
 
 
 第一章 基础篇  
-1.1 [go语言-类型](Basic-Go/1 go-类型.md)  
+1.1 [go语言-类型](Basic-Go/1-go-类型.md)  
 1.2 [go语言-表达式](Basic-Go/2 go-表达式.md)  
 1.3 [go语言-函数](Basic-Go/3 go-函数.md)  
 1.4 [go语言-数据](Basic-Go/4 go-数据.md)  
