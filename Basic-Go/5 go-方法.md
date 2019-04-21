@@ -1,4 +1,4 @@
-# Go-learning
+# Go-learning-With-Hack
 # 5.语言详解--方法
 
 ## 5.1 方法定义

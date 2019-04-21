@@ -1,5 +1,5 @@
-# Go-learning
-go-learning --将之前学习go语言过程 开发/改造扫描器的过程记录下来
+# Go-learning-With-Hack
+Go-learning-With-Hack --将之前学习go语言过程 开发/改造扫描器的过程记录下来
 
 这里主要是我学习GO的过程，学习的书籍是雨痕老师写的
 
