@@ -31,16 +31,16 @@ screenshot 对应代码截图等
 
 第一章 基础篇  
 1.1 [go语言-类型](Basic-Go/1-go-类型.md)  
-1.2 [go语言-表达式](Basic-Go/2 go-表达式.md)  
-1.3 [go语言-函数](Basic-Go/3 go-函数.md)  
-1.4 [go语言-数据](Basic-Go/4 go-数据.md)  
-1.5 [go语言-方法](Basic-Go/5 go-方法.md)  
-1.6 [go语言-接口](Basic-Go/6 go-接口.md)  
-1.7 [go语言-并发](Basic-Go/7 go-并发.md)  
-1.8 [go语言-包结构](Basic-Go/8 go-包结构.md)  
-1.9 [go语言-反射](Basic-Go/9 go-反射.md)  
-1.10 [go语言-其他](Basic-Go/10 go-其他.md)  
-1.11 [go语言-知识图谱](Basic-Go/11 go-知识图谱.md)  
+1.2 [go语言-表达式](Basic-Go/2-go-表达式.md)  
+1.3 [go语言-函数](Basic-Go/3-go-函数.md)  
+1.4 [go语言-数据](Basic-Go/4-go-数据.md)  
+1.5 [go语言-方法](Basic-Go/5-go-方法.md)  
+1.6 [go语言-接口](Basic-Go/6-go-接口.md)  
+1.7 [go语言-并发](Basic-Go/7-go-并发.md)  
+1.8 [go语言-包结构](Basic-Go/8-go-包结构.md)  
+1.9 [go语言-反射](Basic-Go/9-go-反射.md)  
+1.10 [go语言-其他](Basic-Go/10-go-其他.md)  
+1.11 [go语言-知识图谱](Basic-Go/11-go-知识图谱.md)  
 
 第二章 应用篇  
 2.0 [配置环境](example/环境.md)  
