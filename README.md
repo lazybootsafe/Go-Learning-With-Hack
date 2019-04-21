@@ -19,7 +19,7 @@ screenshot 对应代码截图等
 
 
 
-([试读部分2.1](example/示例1.md))([试读部分1.1](Basic-Go/1 go-类型.md))
+([试读部分2.1](example/示例1.md))([试读部分1.1](Basic-Go/1-go-类型.md))
 
 
 
