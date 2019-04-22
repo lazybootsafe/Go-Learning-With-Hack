@@ -45,15 +45,18 @@ screenshot 对应代码截图等
 第二章 应用篇  
 2.0 [配置环境](example/环境.md)  
 2.1 [示例1](example/示例1.md)  
-2.2 示例2  
-2.3 示例3
+2.2 [示例2](example/示例2.md)  
+2.3 示例3  
+2.4 示例4
 
 
 
 
 第三章 实战篇  
 3.1 [go语言优势和程序构思](hack/thinking.md)  
-3.2 xxxx  
+3.2 [gohack开发之简单TCP扫描器](hack/simpleTcpScan/simpleTcpScan.md)  
+3.3 xxxx  
+3.x [代码赏析之kunpeng](hack/kunpeng/kunpend.md)
 
 
 #### 联系我
@@ -63,3 +66,7 @@ wx公众号 aokisec
 wx号  
 看看就行 给不给star无所谓的:)  
 如有谬误,那怎么办,我也很绝望啊  
+
+#### 致谢
+
+[ywolf and opensec-cn](https://github.com/opensec-cn/kunpeng)  
