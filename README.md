@@ -53,7 +53,7 @@
 2.6 [示例6](example/示例6.md)  [代码](example/code/eg6.go)  
 2.7 [示例7](example/示例7.md)  [代码](example/code/eg7.go)  
 2.8 [示例8](example/示例8.md)  [代码](example/code/eg8.go)  
-2.9 示例9  
+2.9 [示例9](example/示例9.md)  [代码](example/示例9)  
 2.10 示例10
 
 
