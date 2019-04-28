@@ -56,7 +56,7 @@
 2.9 [示例9](example/示例9.md)  [代码](example/示例9)  
 2.10 示例10
 
-
+PS:示例1-8 基础部分;9-~ 提高进阶部分;
 
 第三章 实战篇  
 3.1 [go语言优势和程序构思](hack/thinking.md)  
@@ -64,6 +64,7 @@
 3.3 [gohack开发之AFL fuzzing](hack/go-afl-fuzzing)  
 3.4 [gohack开发之GO misc tool](hack/go-misc-tool)  
 3.5 [gohack开发之wfuzz-go改造](hack/go-wfuzz-recode)  
+3.6 [gohack开发之PYGO-port-scan](hack/go-port-scan)  
 3.x [代码赏析之kunpeng](hack/kunpeng/kunpend.md)  
 
 
