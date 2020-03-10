@@ -1,4 +1,4 @@
-module github.com/phachon/mm-wiki
+module github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk
 
 go 1.12
 

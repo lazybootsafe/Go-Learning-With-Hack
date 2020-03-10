@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego/validation"
-	"github.com/phachon/mm-wiki/app/models"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/models"
 	"strings"
 )
 

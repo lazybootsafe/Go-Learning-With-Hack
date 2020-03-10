@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"github.com/go-ego/riot/types"
-	"github.com/phachon/mm-wiki/app/models"
-	"github.com/phachon/mm-wiki/app/utils"
-	"github.com/phachon/mm-wiki/global"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/models"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/utils"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/global"
 	"strings"
 )
 

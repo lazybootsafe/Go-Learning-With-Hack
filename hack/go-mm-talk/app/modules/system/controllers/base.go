@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/phachon/mm-wiki/app/controllers"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/controllers"
 )
 
 type BaseController struct {

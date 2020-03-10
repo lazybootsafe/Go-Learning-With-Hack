@@ -7,10 +7,10 @@ import (
 	"github.com/astaxie/beego/logs"
 	"github.com/fatih/color"
 	"github.com/go-ego/riot/types"
-	"github.com/phachon/mm-wiki/app/models"
-	"github.com/phachon/mm-wiki/app/utils"
-	"github.com/phachon/mm-wiki/app/work"
-	"github.com/phachon/mm-wiki/global"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/models"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/utils"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/work"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/global"
 	"github.com/snail007/go-activerecord/mysql"
 	"log"
 	"os"
@@ -75,15 +75,15 @@ func initFlag() {
 func poster() {
 	fg := color.New(color.FgBlue)
 	logo := `
-                                            _   _      _ 
- _ __ ___    _ __ ___           __      __ (_) | | __ (_)
-| '_ ' _ \  | '_ ' _ \   _____  \ \ /\ / / | | | |/ / | |
-| | | | | | | | | | | | |_____|  \ V  V /  | | |   <  | |
-|_| |_| |_| |_| |_| |_|           \_/\_/   |_| |_|\_\ |_|
+                         
+ _ __ ___    _ __ ___   
+| '_ ' _ \  | '_ ' _ \   
+| | | | | | | | | | | | 
+|_| |_| |_| |_| |_| |_|    
 ` +
 		"Author: finger\r\n" +
 		"Version: " + Version + "\r\n" +
-		u"Link: 社会主义"
+		"123"
 	fg.Println(logo)
 }
 

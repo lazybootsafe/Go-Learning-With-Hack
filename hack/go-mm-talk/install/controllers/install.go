@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"github.com/astaxie/beego/validation"
-	"github.com/phachon/mm-wiki/app/utils"
-	"github.com/phachon/mm-wiki/global"
-	"github.com/phachon/mm-wiki/install/storage"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/utils"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/global"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/install/storage"
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/mem"
 	"io/ioutil"

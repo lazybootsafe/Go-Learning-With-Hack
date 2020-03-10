@@ -3,7 +3,7 @@ package models
 import (
 	"encoding/json"
 	"github.com/astaxie/beego/context"
-	"github.com/phachon/mm-wiki/app/utils"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/utils"
 	"github.com/snail007/go-activerecord/mysql"
 	"strings"
 	"time"

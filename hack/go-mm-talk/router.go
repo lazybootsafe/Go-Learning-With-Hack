@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/phachon/mm-wiki/app"
-	"github.com/phachon/mm-wiki/app/controllers"
-	systemControllers "github.com/phachon/mm-wiki/app/modules/system/controllers"
-	"github.com/phachon/mm-wiki/app/utils"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/controllers"
+	systemControllers "github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/modules/system/controllers"
+	"github.com/lazybootsafe/Go-Learning-With-Hack/tree/master/hack/go-mm-talk/app/utils"
 	"html/template"
 	"net/http"
 )
