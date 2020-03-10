@@ -55,6 +55,7 @@
 2.8 [示例8](example/示例8.md)  [代码](example/code/eg8.go)  
 2.9 [示例9](example/示例9.md)  [代码](example/示例9)  
 2.10 示例10
+2.11 [优雅的Go语言](example/优雅的go.md)  
 
 PS:示例1-8 基础部分;9-~ 提高进阶部分;
 
