@@ -1,0 +1,72 @@
+<div class="container-fluid">
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="page-header">
+            <h2>全部用户 <small><span class="badge">{{.count}}</span></small></h2>
+        </div>{{$loginUserId := .login_user_id}}
+        <div class="row">
+            <form action="" method="get">
+                <div class="col-md-9">
+                    <div class="input-group">
+                    </div>
+                </div>{{$username := .username}}
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input class="form-control" name="username" type="text" value="{{$username}}" placeholder="用户名">
+				            <span class="input-group-btn">
+				              <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+				            </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br>
+        <table class="table">
+            <thead>
+            <tr>
+                <td class="w15p text-left"><strong>用户名</strong></td>
+                <td class="text-left"><strong>姓名</strong></td>
+                <td class="text-left"><strong>职位</strong></td>
+                <td class="w17p text-left"><strong>邮箱</strong></td>
+                <td class="w11p text-left"><strong>座机</strong></td>
+                <td class="w11p text-left"><strong>手机</strong></td>
+                <td class="w11p text-left"><strong>IM</strong></td>
+                <td class="w8p center"><strong>操作</strong></td>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $user := .users}}
+            <tr class="space-list">
+                <td>
+                    {{if eq $user.user_id $loginUserId}}
+                        <strong><a href="/system/main/index" target="_parent">{{$user.username}} <span class="text text-primary"><i class="glyphicon glyphicon-new-window"></i></span> </a></strong>
+                    {{else}}
+                        <strong><a href="/user/info?user_id={{$user.user_id}}">{{$user.username}} <span class="text text-primary"><i class="glyphicon glyphicon-new-window"></i></span> </a></strong>
+                    {{end}}
+                </td>
+                <td>{{$user.given_name}}</td>
+                <td>{{$user.position}}</td>
+                <td>{{$user.email}}</td>
+                <td>{{$user.phone}}</td>
+                <td>{{$user.mobile}}</td>
+                <td>{{$user.im}}</td>
+                <td class="center">
+                    {{if eq $user.user_id $loginUserId}}
+                    {{else}}
+                    {{if eq $user.follow "1"}}
+                        <a onclick="Common.ajaxSubmit('/follow/cancel?follow_id={{$user.follow_id}}&user_id={{$user.user_id}}')"><i class="glyphicon glyphicon-heart"></i></a>
+                    {{else}}
+                        <a onclick="Common.ajaxSubmit('/follow/add?type=2&object_id={{$user.user_id}}')"><i class="glyphicon glyphicon-heart-empty"></i></a>
+                    {{end}}
+                    {{end}}
+                </td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        {{template "paginator/default.html" .}}
+    </div>
+</div>
+</div>

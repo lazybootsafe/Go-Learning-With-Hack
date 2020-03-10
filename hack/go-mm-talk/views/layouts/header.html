@@ -1,0 +1,102 @@
+<div id="sidebar-wrapper">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" aria-label="Expand and Collapse Menu" style="float: left;margin-left: 15px;" onclick="layoutToggle()">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/" style="width: 238px">&nbsp;&nbsp;Markdown Mini Wiki</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+                    <i class="glyphicon glyphicon-chevron-down" style="color: #fff;"></i>
+                </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li {{if eq .navName "main"}}class="active"{{end}}><a href="/"><i class="fa fa-home"></i>&nbsp;主页</a></li>
+                    <li {{if eq .navName "space"}}class="active"{{end}}><a href="/space/index"><i class="fa fa-cube"></i>&nbsp;空间</a></li>
+                    <li {{if eq .navName "user"}}class="active"{{end}}><a href="/user/index"><i class="fa fa-user "></i>&nbsp;用户</a></li>
+                    <li {{if eq .navName "system"}}class="active"{{end}}><a href="/system/main/index"><i class="fa fa-cog"></i>&nbsp;系统</a></li>
+                </ul>
+                <form class="navbar-form navbar-left visible-md visible-lg" action="#" method="post">
+                    <div class="form-group has-feedback">
+                        {{/*<i class="glyphicon glyphicon-search form-control-feedback" style="line-height: 32px;"></i>*/}}
+                        <div class="input-group input-group-sm">
+                            <input class="form-control input-sm" name="keyword" type="text" onkeydown="KeyDown('#search_btn')" placeholder="请输入关键字搜索...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button" name="search" id="search_btn" onclick="mainSearch(this.form, '/main/search')"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                        {{/*<input class="form-control input-sm" type="text" placeholder="输入文档名搜索..." style="padding-right: 28px;width: 280px">*/}}
+                    </div>
+                    &nbsp;
+                    <div class="btn-group btn-group-sm" role="group">
+                        {{/*<button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-fullscreen"></i></button>*/}}
+                        <button type="button" onclick="layoutToggle()" class="btn btn-primary"><i class="fa fa-columns"></i></button>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a type="button" data-toggle="web-popover" data-placement="bottom">
+                            <span class="fa fa-question-circle"></span>&nbsp;帮助
+                            <span class="caret"></span>
+                        </a>
+                        <div class="webui-popover-content">
+                            <ul class="dropdown-menu webui-popover-menu">
+                                <li><a href="https://github.com/phachon/mm-wiki/issues" target="_blank"><span class="fa fa-question-circle"></span>&nbsp;问题反馈</a></li>
+                                <li><a href="https://github.com/phachon/mm-wiki" target="_blank"><span class="fa fa-book"></span>&nbsp;在线文档</a></li>
+                                <li><a name="about" data-link="/main/about"><span class="fa fa-send"></span>&nbsp;关于软件</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a type="button" data-toggle="web-popover" data-placement="bottom">
+                            <span class="fa fa-user"></span>&nbsp;{{.login_username}}
+                            <span class="caret"></span>
+                        </a>
+                        <div class="webui-popover-content">
+                            <ul class="dropdown-menu webui-popover-menu">
+                                <li><a href="/system/main/index"><span class="glyphicon glyphicon-leaf"></span>&nbsp;个人中心</a></li>
+                                <li><a name="repass" data-link="/system/profile/password"><span class="glyphicon glyphicon-lock"></span>&nbsp;修改密码</a></li>
+                                <li><a href="/author/logout"><span class="glyphicon glyphicon-off"></span>&nbsp;安全退出</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a type="button" data-placement="bottom"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<script type="text/javascript">
+    if (self != top) {
+        parent.location.href = window.location.href
+    }
+    function KeyDown(element) {
+        if (event.keyCode == 13) {
+            event.returnValue = false;
+            event.cancel = true;
+            $(element).click();
+        }
+    }
+    function mainSearch(element, url) {
+        var searchText = $(element).find("input[name='keyword']").val();
+        url = url + "?keyword="+searchText;
+        layer.open({
+            type: 2,
+            skin: Layers.skin,
+            title: '<strong>搜索文档</strong>',
+            shadeClose: true,
+            shade : 0.6,
+            maxmin: true,
+            area: ["1000px", "525px"],
+            content: url,
+            padding:"10px"
+        });
+    }
+    Layers.bindIframe("a[name='repass']", "修改密码", "325px", "800px");
+    Layers.bindIframe("a[name='about']", "关于MM-Wiki", "338px", "600px");
+</script>

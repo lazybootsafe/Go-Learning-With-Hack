@@ -1,0 +1,97 @@
+<div class="container-fluid">
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <form action="" method="get">
+                <div class="col-md-9">
+                    <div class="input-group">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input class="form-control" name="keyword" type="text" value="{{.keyword}}" placeholder="空间名称/描述">
+				            <span class="input-group-btn">
+				              <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+				            </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="w8p">ID</th>
+                <th class="w15p">名称</th>
+                <th>描述</th>
+                <th class="w15p">标签</th>
+                <th class="w8p">访问级别</th>
+                <th class="w8p">分享</th>
+                <th class="w8p">导出</th>
+                <th class="w17p">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $space := .spaces}}
+            <tr>
+                <td class="center">{{$space.space_id}}</td>
+                <td><a href="/space/document?space_id={{$space.space_id}}" target="_parent" title="查看空间文档"><strong>{{$space.name}}</strong> <span class="text text-primary"><i class="glyphicon glyphicon-new-window"></i></span></a></td>
+                <td>{{$space.description}}</td>
+                <td class="tags-show center">{{$space.tags}}</td>
+                <td class="center">
+                 {{if eq $space.visit_level "private"}}
+                 <label class="text text-danger">Private</label>
+                 {{else if eq $space.visit_level "internal"}}
+                     <label class="text text-warning">Internal</label>
+                 {{else}}
+                     <label class="text text-primary">Public</label>
+                 {{end}}
+                </td>
+                <td class="center">
+                {{if eq $space.is_share "1"}}
+                    <span class="label label-success">是</span>
+                {{else}}
+                    <span class="label label-danger">否</span>
+                {{end}}
+                </td>
+                <td class="center">
+                {{if eq $space.is_export "1"}}
+                    <span class="label label-success">是</span>
+                {{else}}
+                    <span class="label label-danger">否</span>
+                {{end}}
+                </td>
+                <td class="center">
+                    <a name="edit" data-link="/system/space/edit?space_id={{$space.space_id}}"><i class="glyphicon glyphicon-edit"></i>修改</a>
+                    <a name="user" data-link="/system/space/member?space_id={{$space.space_id}}"><i class="fa fa-group"></i>成员</a>
+                    <a href="/system/space/download?space_id={{$space.space_id}}"><i class="fa fa-download"></i>下载</a>
+                    <a onclick="Layers.confirm('确定要删除空间吗？', '/system/space/delete?space_id={{$space.space_id}}');"><i class="glyphicon glyphicon-trash"></i>删除</a>
+                </td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        {{template "paginator/default.html" .}}
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    $(function () {
+       $(".tags-show").each(function () {
+           var tags = $(this).text();
+           if (tags !== "") {
+               var html = "";
+               var tagList = tags.split(",");
+               for (var i = 0; i < tagList.length; i++) {
+                   html += "<span class='label label-default'>"+tagList[i]+"</span> ";
+               }
+               $(this).html(html);
+           }
+       });
+    });
+    Layers.bindIframe("[name='edit']", "修改空间信息", "450px", "950px");
+    Layers.bindIframe("[name='user']", "空间成员列表", "500px", "1000px");
+</script>

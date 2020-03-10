@@ -1,0 +1,31 @@
+<div id="main-left" class="ui-layout-west" style="padding: 0">
+    <ul class="nav" id="side-menu">
+        <li class="sidebar-search"></li>
+        {{range $menu := $.menus}}
+        <li><a href="javascript:;"><i class="glyphicon {{$menu.icon}}"></i> {{$menu.name}} <span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+        {{range $controller := $.controllers}}
+            {{if eq $controller.parent_id $menu.privilege_id}}
+                <li><a href="/system/{{$controller.controller}}/{{$controller.action}}" target="mainFrame"><i class="glyphicon {{$controller.icon}}"></i> {{$controller.name}} </a></li>
+            {{end}}
+        {{end}}
+        </ul>
+        </li>
+        {{end}}
+        {{/*<li>*/}}
+            {{/*<a href="javascript:;"><i class="glyphicon glyphicon-lock"></i> 权限管理<span class="fa arrow"></span></a>*/}}
+            {{/*<ul class="nav nav-second-level">*/}}
+                {{/*<li>*/}}
+                    {{/*<a href="/system/privilege/add" target="mainFrame"><i class="glyphicon glyphicon-list"></i> 添加权限 </a>*/}}
+                {{/*</li>*/}}
+                {{/*<li>*/}}
+                    {{/*<a href="/system/privilege/list" target="mainFrame"><i class="glyphicon glyphicon-list"></i> 权限列表 </a>*/}}
+                {{/*</li>*/}}
+            {{/*</ul>*/}}
+        {{/*</li>*/}}
+    </ul>
+</div>
+<script type="text/javascript">
+    $('#side-menu').metisMenu();
+</script>
+<iframe class="ui-layout-center" id="mainFrame" name="mainFrame"  width="100%" frameborder="0" scrolling="yes" style="overflow-y: auto" src="/system/profile/info"></iframe>

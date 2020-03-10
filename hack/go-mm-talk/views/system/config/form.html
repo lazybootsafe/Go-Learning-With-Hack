@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <div id="failedBox" class="hide"></div>
+    <div class="panel panel-default">
+        <br>
+        <div class="panel-body">
+            <form class="form-horizontal" method="post" action="/system/config/modify">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>系统版本号</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="system_version" class="form-control" value="{{.configValue.system_version}}" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>主页标题</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="main_title" class="form-control" value="{{.configValue.main_title}}" placeholder="请输入主页标题">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>主页描述</label>
+                    <div class="col-sm-4">
+                        <textarea name="main_description" class="form-control" rows="4" placeholder="请输入主页描述">{{.configValue.main_description}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>开启自动关注</label>
+                    <div class="col-sm-1">
+                        <input type="checkbox" name="auto_follow_doc_open" value="1" {{if eq .configValue.auto_follow_doc_open "1"}} checked="checked" {{end}} placeholder="">
+                    </div>
+                    <div class="col-sm-3 form-comment">
+                        <span class="text-danger"> * 用户创建编辑过的文档会被自动关注</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>开启邮件通知</label>
+                    <div class="col-sm-1">
+                        <input type="checkbox" name="send_email_open" value="1" {{if eq .configValue.send_email_open "1"}} checked="checked" {{end}} placeholder="">
+                    </div>
+                    <div class="col-sm-3 form-comment">
+                        <span class="text-danger"> * 开启邮件通知必须先添加并启用邮箱配置</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>开启统一登录</label>
+                    <div class="col-sm-1">
+                        <input type="checkbox" name="sso_open" value="1" {{if eq .configValue.sso_open "1"}} checked="checked" {{end}} placeholder="">
+                    </div>
+                    <div class="col-sm-3 form-comment">
+                        <span class="text-danger"> * 开启统一登录必须先添加并启用登录认证</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" onclick="Form.ajaxSubmit(this.form, false);" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("input[type='checkbox']").bootstrapSwitch({
+            size: 'small',
+            onText: '是',
+            offText: '否'
+        });
+    });
+</script>

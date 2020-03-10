@@ -1,0 +1,73 @@
+<div class="container-fluid">
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <form action="" method="get">
+                <div class="col-md-9">
+                    <div class="input-group">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input class="form-control" name="keyword" type="text" value="{{.keyword}}" placeholder="角色名称">
+				            <span class="input-group-btn">
+				              <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+				            </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="w8p">ID</th>
+                <th>名称</th>
+                <th class="w8p">类型</th>
+                <th class="w15p">修改时间</th>
+                <th class="w20p">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $role := .roles}}
+            <tr>
+                <td class="center">{{$role.role_id}}</td>
+                <td>{{$role.name}}</td>
+                <td class="center">
+                {{if eq $role.type "1"}}
+                    <span class="label label-danger">系统</span>
+                {{else}}
+                    <span class="label label-success">自定义</span>
+                {{end}}
+                </td>
+                <td class="center">
+                {{dateFormat $role.update_time "Y-m-d H:i:s"}}
+                </td>
+                <td class="center">
+                    {{if eq $role.role_id "1"}}
+                     <a name="user" data-link="/system/role/user?role_id={{$role.role_id}}"><i class="glyphicon glyphicon-user"></i>用户</a>
+                    {{else}}
+                    <a name="edit" data-link="/system/role/edit?role_id={{$role.role_id}}"><i class="glyphicon glyphicon-edit" ></i>修改</a>
+                    <a name="privilege" data-link="/system/role/privilege?role_id={{$role.role_id}}"><i class="glyphicon glyphicon-lock" ></i>权限</a>
+                    <a name="user" data-link="/system/role/user?role_id={{$role.role_id}}"><i class="glyphicon glyphicon-user" ></i>用户</a>
+                    {{if eq $role.type "0"}}
+                        <a onclick="Layers.confirm('确定删除吗？', '/system/role/delete?role_id={{$role.role_id}}');"><i class="remove glyphicon glyphicon-trash"></i>删除</a>
+                    {{end}}
+                    {{end}}
+                </td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        {{template "paginator/default.html" .}}
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    Layers.bindIframe("[name='edit']", "修改角色信息", "300px", "800px");
+    Layers.bindIframe("[name='privilege']", "角色授权", "500px", "1050px");
+    Layers.bindIframe("[name='user']", "角色用户", "500px", "1000px");
+</script>

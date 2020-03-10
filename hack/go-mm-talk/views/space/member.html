@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div id="failedBox" class="hide"></div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">{{$spaceId := .space_id}}
+            </div>
+            <br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <td class="w20p text-left"><strong>用户名</strong></td>
+                    <td class="text-left"><strong>姓名</strong></td>
+                    <td class="w20p text-left"><strong>邮箱</strong></td>
+                    <td class="w20p text-left"><strong>手机</strong></td>
+                    <td class="w13p center"><strong>空间权限</strong></td>
+                </tr>
+                </thead>
+                <tbody>
+                {{range $user := .users}}
+                <tr>
+                    <td>{{$user.username}}</td>
+                    <td>{{$user.given_name}}</td>
+                    <td>{{$user.email}}</td>
+                    <td>{{$user.mobile}}</td>
+                    <td class="center">
+                    {{if eq $user.space_privilege "1" }}
+                        <span class="label label-info">编辑者</span>
+                    {{else if eq $user.space_privilege "2"}}
+                        <span class="label label-success">管理员</span>
+                    {{else}}
+                        <span class="label label-default">浏览者</span>
+                    {{end}}
+                    </td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            {{template "paginator/default.html" .}}
+        </div>
+    </div>
+</div>

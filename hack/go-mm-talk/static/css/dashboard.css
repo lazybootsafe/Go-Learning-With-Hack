@@ -1,0 +1,219 @@
+/**
+ * Move down content because we have a fixed navbar that is 50px tall
+ */
+body {
+    padding-top: 50px;
+}
+
+/**
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+    border: 0;
+}
+
+/**
+ * layout
+ */
+/* pane */
+.ui-layout-pane {
+    /*border: 1px solid #BBB;*/
+}
+/* main iframe pane */
+.ui-layout-pane-center {
+    padding: 0 4px 5px 0;
+    margin: 0;
+}
+/* main-left pane */
+.ui-layout-pane-west {
+    padding: 8px 10px;
+    background-color: #f5f5f5 !important;
+    overflow: auto;
+}
+/* resizer-bars */
+.ui-layout-resizer {
+    /*background: #DDD;*/
+    background: rgb(204,204,204);
+    box-shadow:0 0 8px #d5d5d5;
+    -moz-box-shadow: 0 0 8px #DDD;
+    -webkit-box-shadow:0 0 8px #DDD;
+}
+.ui-layout-resizer:hover {
+    /*background: #9D9;*/
+    background: rgba(33, 109, 157, 0.45);
+    box-shadow:0 0 8px #DDD;
+    -moz-box-shadow:0 0 8px #DDD;
+    -webkit-box-shadow:0 0 8px #DDD;
+}
+
+/* resizer-bars */
+.ui-layout-resizer-closed {
+    /*background: #DDD;*/
+    background: rgb(172, 172, 172);
+}
+
+/* toggler-buttons */
+.ui-layout-toggler {
+    background: #AAAA;
+}
+.ui-layout-toggler-closed { /* closed toggler-button */
+    background: rgba(87, 87, 87, 0.67);
+}
+
+/* masks are usually transparent - make them visible (must 'override' default) */
+.ui-layout-mask {
+    /*background:	#C00 !important;*/
+    /*opacity:	.20 !important;*/
+    /*filter:		alpha(opacity=20) !important;*/
+}
+
+
+/**
+ * main-left 滚动条
+ */
+#main-left {
+    overflow-x: hidden;
+}
+#main-left::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+#main-left::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+#main-left::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.86, #C7C7C7), color-stop(0.62, #585858), color-stop(0.14, #B1B1B1));
+}
+
+/**
+ * main-left collection
+ */
+.collection-doc > span {
+    margin-top: 10px;
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: normal;
+    font-family: Arial,sans-serif;
+}
+
+.collection-doc > hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(82, 82, 82, 1);
+}
+
+.collection-doc > ul {
+    padding-left: 0;
+    line-height: 20px;
+}
+
+.collection-doc > ul > li {
+    padding: 5px 3px;
+    list-style-type:none;
+}
+
+.collection-doc > ul > li > a:hover, a:focus {
+    /*text-decoration: underline;*/
+}
+
+/**
+ * main-left page
+ */
+.page-tree > hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(82, 82, 82, 1);
+}
+
+#dir_tree {
+    padding-left: 0
+}
+
+#dir_tree li {
+    border-bottom: 0!important;
+}
+
+/**
+ * main-left space
+ */
+.left-space >li {
+    list-style-type:none;
+}
+
+/* space sidebar */
+.left-space > .nav-sidebar {
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+.left-space > .nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.left-space > .nav-sidebar > .active > a,
+.left-space > .nav-sidebar > .active > a:hover,
+.left-space > .nav-sidebar > .active > a:focus {
+    /*color: #fff;*/
+    background-color: #e2e2e2;
+    /*background-color: #b0b0b0;*/
+}
+
+/**
+ * system main-left sidebar
+ */
+.sidebar-search {
+    padding: 15px;
+}
+
+#side-menu > li {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.nav-second-level > li > a {
+    padding-left: 37px;
+}
+.nav-second-level > li, #side-menu > .nav-third-level > li {
+    border-bottom: none !important;
+}
+
+.widget .title {
+    /* margin-top: 0; */
+    padding-bottom: 0;
+    margin-bottom: 0;
+    position: relative;
+    font-size: 1.5em;
+}
+
+.widget > hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(82, 82, 82, 1);
+}
+
+.widget .tag-cloud a {
+    /*border: 1px solid #ebebeb;*/
+    border: 1px solid #777;
+    border-radius: .25em;
+    padding: 2px 7px;
+    /*color: rgba(34, 85, 115, 0.9);;*/
+    /*color: #959595;*/
+    color: #fff;
+    line-height: 1.4em;
+    display: inline-block;
+    margin: 0 7px 7px 0;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    background: #777;
+    /*box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);*/
+    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.22);
+}
+
+.widget .tag-cloud a:hover {
+    background: #555;
+}
+

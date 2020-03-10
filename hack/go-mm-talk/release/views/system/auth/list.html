@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <form action="" method="get">
+                    <div class="col-md-4">
+                        <button type="button" name="add" data-link="/system/auth/add" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> 添加登录认证</button>
+                        <button type="button" name="doc" data-link="/system/auth/doc" class="btn btn-info"><i class="glyphicon glyphicon-list-alt"></i> 认证接口规范</button>
+                    </div>
+                    <div class="col-md-5"></div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input class="form-control" name="keyword" type="text" value="{{.keyword}}" placeholder="认证名称">
+                            <span class="input-group-btn">
+				              <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+				            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th class="w5p">ID</th>
+                    <th class="w13p">名称</th>
+                    <th class="w8p">用户名前缀</th>
+                    <th>认证URL</th>
+                    <th class="w20p">额外数据</th>
+                    <th class="w8p">是否启用</th>
+                    <th class="w13p">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{range $auth := .auths}}
+                <tr>
+                    <td class="center">{{$auth.login_auth_id}}</td>
+                    <td>{{$auth.name}}</td>
+                    <td>{{$auth.username_prefix}}</td>
+                    <td>{{$auth.url}}</td>
+                    <td>{{$auth.ext_data}}</td>
+                    <td class="center">
+                    {{if eq $auth.is_used "1"}}
+                    <span class="label label-success">是</span>
+                    {{else}}
+                    <span class="label label-danger">否</span>
+                    {{end}}
+                    </td>
+                    <td class="center">
+                        <a name="edit" data-link="/system/auth/edit?login_auth_id={{$auth.login_auth_id}}"><i class="glyphicon glyphicon-edit"></i>修改</a>
+                        {{if eq $auth.is_used "1"}}{{else}}
+                            <a onclick="Layers.confirm('确定要启用该登录认证吗？', '/system/auth/used?login_auth_id={{$auth.login_auth_id}}');"><i class="glyphicon glyphicon-ok-circle"></i>启用</a>
+                        {{end}}
+                        <a onclick="Layers.confirm('确定删除吗？', '/system/auth/delete?login_auth_id={{$auth.login_auth_id}}');"><i class="glyphicon glyphicon-trash"></i>删除</a>
+                    </td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    Layers.bindIframe("button[name='add']", "添加登录认证", "400px", "900px");
+    Layers.bindIframe("[name='edit']", "修改登录认证", "400px", "900px");
+    Layers.bindIframe("[name='doc']", "登录认证接口规范", "550px", "1000px");
+</script>

@@ -1,0 +1,104 @@
+<div class="container-fluid">{{$user := .user}}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="page-header">
+                <h3><i class="fa fa-address-card-o"></i> {{$user.username}}（{{$user.given_name}}）</h3>
+            </div>
+            <ul class="nav nav-tabs">
+                <li  class="active"><a href="/user/info?user_id={{$user.user_id}}">用户信息</a></li>
+                <li><a href="/user/followUser?user_id={{$user.user_id}}">关注用户</a></li>
+            </ul>
+            <br>
+            <div class="row">
+                <div class="col-md-7" style="padding-left: 30px">
+                    <h3>最近活动</h3>
+                    <div class="user-activity">
+                        {{if eq .count 0}}
+                            <div class="alert alert-info alert-dismissible fade in" role="alert" style="margin-bottom: 0">
+                                <p><i class="glyphicon glyphicon-volume-up"></i> 还没有任何活动！</p>
+                            </div>
+                        {{else}}
+                        <ul>
+                            {{range $logDocument := .logDocuments}}
+                            <li>
+                                <div>
+                                    <a href="/document/index?document_id={{$logDocument.document_id}}" target="_parent" class="text text-info text-font-15">
+                                    {{if eq $logDocument.document_type "1"}}
+                                        <i class="fa fa-file-word-o"></i>
+                                    {{else}}
+                                        <i class="fa fa-folder-o"></i>
+                                    {{end}}
+                                    {{$logDocument.document_name}}</a>
+                                </div>
+                                <span class="text text-font-12 activity-time">
+                                    {{if eq $logDocument.action "1"}}
+                                        <label class="text text-info">创建</label>
+                                    {{else if eq $logDocument.action "2"}}
+                                        <label class="text text-primary">修改</label>
+                                    {{else if eq $logDocument.action "3"}}
+                                        <label class="text text-danger">删除</label>
+                                    {{end}}
+                                        </td>
+                                    于 {{dateFormat $logDocument.update_time "Y-m-d H:i:s"}}</span>
+                            </li>
+                            {{end}}
+                        </ul>
+                        {{end}}
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>个人资料</h3>
+                    <div class="user-info">
+                        <div class="user-group">
+                            <label class="text-right text-font-15">用户名</label>
+                            <span>{{$user.username}}</span>
+                        </div>
+                        <div class="user-group">
+                            <label class="text-right text-font-15">姓名</label>
+                            <span>{{$user.given_name}}</span>
+                        </div>
+                        <div class="user-group">
+                            <label class="text-right text-font-15">邮箱</label>
+                            <span>{{$user.email}}</span>
+                        </div>
+                        <div class="user-group">
+                            <label class="text-right text-font-15">手机</label>
+                            <span>{{$user.mobile}}</span>
+                        </div>
+                        <div class="user-group">
+                            <label class="text-right text-font-15">状态</label>
+                            <span>
+                            {{if eq $user.is_forbidden "1"}}
+                                <span class="label label-success">屏蔽</span>
+                            {{else}}
+                                <span class="label label-success">正常</span>
+                            {{end}}
+                            </span>
+                        </div>
+                        <hr>
+                        <div class="user-group">
+                            <label class="text-right text-font-15">电话</label>
+                            <span>{{$user.phone}}</span>
+                        </div>
+                        <div class="user-group">
+                            <label class="text-right text-font-15">部门</label>
+                            <span>{{$user.department}}</span>
+                        </div>
+                        <div class="user-group">
+                            <label class="text-right text-font-15">职位</label>
+                            <span>{{$user.position}}</span>
+                        </div>
+                        <div class="user-group">
+                            <label class="text-right text-font-15">位置</label>
+                            <span>{{$user.location}}</span>
+                        </div>
+                        <div class="user-group">
+                            <label class="text-right text-font-15">IM</label>
+                            <span>{{$user.im}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div id="failedBox" class="hide"></div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <br>{{$parentDocuments := .parent_documents}}{{$document := .document}}
+            <form class="form-horizontal" method="post" action="/document/modify" onsubmit="return false">
+                <input type="hidden" name="document_id" value="{{$document.document_id}}">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span> 上级</label>
+                    <div class="col-sm-6 form-comment">
+                        <span class="control-label">
+                        {{range $parentDocument := $parentDocuments}}
+                        {{if eq $parentDocument.parent_id "0"}}
+                            <strong><a href="/main/index">{{$parentDocument.name}}</a></strong>
+                        {{else}}
+                            <strong><a href="/main/index">{{$parentDocument.name}}</a> / </strong>
+                        {{end}}
+                        {{end}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span> 名称</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="name" class="form-control" placeholder="请输入文档名称" value="{{$document.name}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" onclick="Form.ajaxSubmit(this.form, true);" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

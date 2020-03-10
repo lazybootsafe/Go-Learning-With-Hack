@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <form action="" method="get">
+                    <div class="col-md-9">
+                        <div class="input-group">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input class="form-control" name="keyword" type="text" value="{{.keyword}}" placeholder="备注">
+                            <span class="input-group-btn">
+                                  <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+                                </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th class="w8p">动作</th>
+                    <th>文档</th>
+                    <th class="w35p">备注</th>
+                    <th class="w15p">时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{range $logDocument := .logDocuments}}
+                <tr>
+                    <td class="center">
+                    {{if eq $logDocument.action "1"}}
+                        <label class="text text-info">创建</label>
+                    {{else if eq $logDocument.action "2"}}
+                        <label class="text text-primary">修改</label>
+                    {{else if eq $logDocument.action "3"}}
+                        <label class="text text-danger">删除</label>
+                    {{end}}
+                    </td>
+                    <td>
+                        {{if eq $logDocument.action "3"}}
+                            {{$logDocument.document_name}}
+                        {{else}}
+                            <a href="/document/index?document_id={{$logDocument.document_id}}" target="_parent">{{$logDocument.document_name}}</a>
+                        {{end}}
+                    </td>
+                    <td>{{$logDocument.comment}}</td>
+                    <td class="center">{{dateFormat $logDocument.create_time "Y-m-d H:i:s"}}</td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+        {{template "paginator/default.html" .}}
+        </div>
+    </div>
+</div>
