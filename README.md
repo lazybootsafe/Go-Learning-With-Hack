@@ -14,7 +14,7 @@
 |basic-go| 第一章 go语言基础|  
 |example| 第二章 即联系示例代码存放|  
 |example\code| 存在go程序代码文件处|  
-|hack| 第三章 使用go进行黑客工具研发章节代码|  
+|hack| 第四章 使用go进行黑客工具研发章节代码|  
 |test-go|  对应go语言基础章节实验代码|  
 |screenshot| 对应代码截图等|  
 

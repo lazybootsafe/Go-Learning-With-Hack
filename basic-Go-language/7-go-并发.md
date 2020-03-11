@@ -1,7 +1,9 @@
 # Go-learning-With-Hack
 # 7.语言详解--并发
+[7.1 Goroutine](7.1Goroutine)  
+[7.2 2222](#7.2Channel)  
 
-## 7.1 Goroutine
+## 7.1Goroutine
 
 * Go 在语言层面对并发编程提供支持，一种类似协程，称作 goroutine 的机制。
 * 只需在函数调用语句前添加 go 关键字，就可创建并发执行单元。
@@ -124,7 +126,7 @@ Hello, World!
 4
 5
 ```
-## 7.2 Channel
+## 7.2Channel  
 
 * 引用类型 channel 是 CSP 模式的具体实现，用于多个 goroutine 通讯。其内部实现了同步，确保并发安全。
 * 默认为同步模式，需要发送和接收配对。否则会被阻塞，直到另一方准备好后被唤醒。
