@@ -1,7 +1,7 @@
 # Go-learning-With-Hack
 # 7.语言详解--并发
 [7.1 Goroutine](7.1Goroutine)  
-[7.2 2222](#7.2Channel)  
+[7.2 2222](#72Channel)  
 
 ## 7.1Goroutine
 
