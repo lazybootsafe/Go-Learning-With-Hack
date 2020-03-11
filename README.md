@@ -59,13 +59,14 @@
 
 PS:示例1-8 基础部分;9-~ 提高进阶部分;
 
-第三章 实战篇  
+第四章 实战篇  
 3.1 [go语言优势和程序构思](hack/thinking.md)  
 3.2 [gohack开发之简单TCP扫描器](hack/simpleTcpScan/simpleTcpScan.md)  
 3.3 [gohack开发之AFL fuzzing](hack/go-afl-fuzzing)  
 3.4 [gohack开发之GO misc tool](hack/go-misc-tool)  
 3.5 [gohack开发之wfuzz-go改造](hack/go-wfuzz-recode)  
 3.6 [gohack开发之PYGO-port-scan](hack/go-port-scan)  
+3.7 [gohack开发之go匿名聊天](hack/go-nmtalk)  
 3.x [代码赏析之kunpeng](hack/kunpeng/kunpeng.md)  
 
 
@@ -74,7 +75,7 @@ PS:示例1-8 基础部分;9-~ 提高进阶部分;
 
 wx公众号 aokisec  
 ![](screenshot/qrcode.png)  
-wx号  
+wx号 finger_xyz   
 看看就行 给不给star无所谓的:)  
 如有谬误,那怎么办,我也很绝望啊  
 
