@@ -5,7 +5,7 @@
 说实话有种冲动把名字起为诸如什么《15天精通go黑客工具开发》这种~~  
 <del>毕竟我也喜欢装逼</del>  
 但是作为一个不穿黑丝袜下课不会和几个男同学留在教室也不做家教的那种老师,:0我还是专心写完这本书吧.  
-等我更新完这本,就会把C#那个项目也更新了,正好写了几个C#的工具可以用来做案例.  
+
 
 
 #### 目录说明  
@@ -14,7 +14,7 @@
 |basic-go| 第一章 go语言基础|  
 |example| 第二章 即联系示例代码存放|  
 |example\code| 存在go程序代码文件处|  
-|hack| 第四章 使用go进行黑客工具研发章节代码|  
+|gohacking| 第四章 使用go进行黑客工具研发章节代码|  
 |test-go|  对应go语言基础章节实验代码|  
 |screenshot| 对应代码截图等|  
 
@@ -60,14 +60,14 @@
 PS:示例1-8 基础部分;9-~ 提高进阶部分;
 
 第四章 实战篇  
-3.1 [go语言优势和程序构思](hack/thinking.md)  
-3.2 [gohack开发之简单TCP扫描器](hack/simpleTcpScan/simpleTcpScan.md)  
-3.3 [gohack开发之AFL fuzzing](hack/go-afl-fuzzing)  
-3.4 [gohack开发之GO misc tool](hack/go-misc-tool)  
-3.5 [gohack开发之wfuzz-go改造](hack/go-wfuzz-recode)  
-3.6 [gohack开发之PYGO-port-scan](hack/go-port-scan)  
-3.7 [gohack开发之go匿名聊天](hack/go-nmtalk)  
-3.x [代码赏析之kunpeng](hack/kunpeng/kunpeng.md)  
+3.1 [go语言优势和程序构思](gohacking/thinking.md)  
+3.2 [gohack开发之简单TCP扫描器](gohacking/simpleTcpScan/simpleTcpScan.md)  
+3.3 [gohack开发之AFL fuzzing](gohacking/go-afl-fuzzing)  
+3.4 [gohack开发之GO misc tool](gohacking/go-misc-tool)  
+3.5 [gohack开发之wfuzz-go改造](gohacking/go-wfuzz-recode)  
+3.6 [gohack开发之PYGO-port-scan](gohacking/go-port-scan)  
+3.7 [gohack开发之go匿名聊天](gohacking/go-nmtalk)  
+3.x [代码赏析之kunpeng](gohacking/kunpeng/kunpeng.md)  
 
 
 
