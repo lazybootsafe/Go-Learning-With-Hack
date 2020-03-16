@@ -1,0 +1,2071 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><meta content="text/html; charset=UTF-8" http-equiv="Content-Type" /><!--This file has been created with freemind2html.xsl--><head><title>afl-fuzz</title><link rel="stylesheet" href="afl-fuzz-6-24.html_files/freemind2html.css" type="text/css" /><meta content="FreeMind-XSL Stylesheet (see: http://freemind-xsl.dev.slash-me.net/ for details)" name="generator" /><script type="text/javascript" src="afl-fuzz-6-24.html_files/freemind2html.js">  
+	</script><script type="text/javascript"><!--
+          
+               function toggle(id)
+               {
+                   div_el = document.getElementById(id);
+                   img_el = document.getElementById('img'+id);
+                   if (div_el.style.display != 'none')
+                   {
+          
+					
+                      div_el.style.display='none';
+                      img_el.src = 'afl-fuzz-6-24.html_files/show.png';
+          
+                   }
+                   else
+                   {
+          
+                      div_el.style.display='block';
+                      img_el.src = 'afl-fuzz-6-24.html_files/hide.png';
+          
+                   };
+               };
+          
+          --></script></head><body><h1>afl-fuzz</h1><div style="width:96%;  padding:2%;  margin-bottom:10px;  border: 0px;  text-align:center;  vertical-align:center;"><img src="afl-fuzz-6-24.html_files/image.png" style="margin-bottom:10px; &#9;border: 0px; &#9;text-align:center; &#9;vertical-align:center;" alt="Imagemap" usemap="#fm_imagemap" /></div><map id="fm_imagemap" name="fm_imagemap"><area shape="rect" href="#FMID_1897690566FM" alt="afl-fuzz" title="afl-fuzz" coords="0,506,53,550" /><area shape="rect" href="#FMID_662965335FM" alt="main fuzz loop" title="main fuzz loop" coords="73,505,168,527" /><area shape="rect" href="#FMID_1776743583FM" alt="cull_queue();根据top_rated设置queue中的favored ..." title="cull_queue();根据top_rated设置queue中的favored ..." coords="188,37,500,59" /><area shape="rect" href="#FMID_713506060FM" alt="参考update_bitmap_score(q);，在calibration的时 ..." title="参考update_bitmap_score(q);，在calibration的时 ..." coords="520,0,1010,22" /><area shape="rect" href="#FMID_339997769FM" alt="top_rated[i]-&gt;favored = 1;若不是favored则跳过该 ..." title="top_rated[i]-&gt;favored = 1;若不是favored则跳过该 ..." coords="520,25,820,47" /><area shape="rect" href="#FMID_879407733FM" alt="queued_favored++;" title="queued_favored++;" coords="520,50,643,72" /><area shape="rect" href="#FMID_1313940729FM" alt="if (!top_rated[i]-&gt;was_fuzzed) pending_f ..." title="if (!top_rated[i]-&gt;was_fuzzed) pending_f ..." coords="520,75,805,97" /><area shape="rect" href="#FMID_621585882FM" alt="skipped_fuzz = fuzz_one(use_argv);" title="skipped_fuzz = fuzz_one(use_argv);" coords="188,333,399,355" /><area shape="rect" href="#FMID_154561728FM" alt=" if ((queue_cur-&gt;was_fuzzed || !queue_cu ..." title=" if ((queue_cur-&gt;was_fuzzed || !queue_cu ..." coords="419,100,1056,140" /><area shape="rect" href="#FMID_79109529FM" alt="fd = open(queue_cur-&gt;fname, O_RDONLY);" title="fd = open(queue_cur-&gt;fname, O_RDONLY);" coords="419,143,675,165" /><area shape="rect" href="#FMID_1719795449FM" alt="orig_in = in_buf = mmap(0, len, PROT_REA ..." title="orig_in = in_buf = mmap(0, len, PROT_REA ..." coords="419,168,892,190" /><area shape="rect" href="#FMID_631019916FM" alt="out_buf = ck_alloc_nozero(len);" title="out_buf = ck_alloc_nozero(len);" coords="419,193,607,215" /><area shape="rect" href="#FMID_1187509445FM" alt="cur_depth = queue_cur-&gt;depth;" title="cur_depth = queue_cur-&gt;depth;" coords="419,218,608,240" /><area shape="rect" href="#FMID_53720896FM" alt="TRIMMING 对in_buf删除部分，根据是否影响trace_bits" title="TRIMMING 对in_buf删除部分，根据是否影响trace_bits" coords="419,243,749,265" /><area shape="rect" href="#FMID_733952940FM" alt="memcpy(out_buf, in_buf, len);" title="memcpy(out_buf, in_buf, len);" coords="419,268,598,290" /><area shape="rect" href="#FMID_769758440FM" alt="orig_perf = perf_score = calculate_score ..." title="orig_perf = perf_score = calculate_score ..." coords="419,293,727,315" /><area shape="rect" href="#FMID_73737330FM" alt="flip" title="flip" coords="419,380,472,402" /><area shape="rect" href="#FMID_1743528803FM" alt="flip1" title="flip1" coords="492,318,552,340" /><area shape="rect" href="#FMID_1984599561FM" alt="bitflip 2/1" title="bitflip 2/1" coords="492,343,558,365" /><area shape="rect" href="#FMID_1594967675FM" alt="bitflip 4/1" title="bitflip 4/1" coords="492,368,558,390" /><area shape="rect" href="#FMID_1141244560FM" alt="bitflip 8/8" title="bitflip 8/8" coords="492,393,558,415" /><area shape="rect" href="#FMID_849883579FM" alt="bitflip 16/8" title="bitflip 16/8" coords="492,418,565,440" /><area shape="rect" href="#FMID_1236101035FM" alt="bitflip 32/8" title="bitflip 32/8" coords="492,443,565,465" /><area shape="rect" href="#FMID_1759479208FM" alt="arith" title="arith" coords="419,468,460,490" /><area shape="rect" href="#FMID_1753914654FM" alt="interest" title="interest" coords="419,493,477,515" /><area shape="rect" href="#FMID_1731411285FM" alt="DICTIONARY" title="DICTIONARY" coords="419,518,508,540" /><area shape="rect" href="#FMID_714762161FM" alt="havoc" title="havoc" coords="419,543,468,565" /><area shape="rect" href="#FMID_1965587396FM" alt="splicing" title="splicing" coords="419,568,479,590" /><area shape="rect" href="#FMID_1954515654FM" alt="queue_cur = queue_cur-&gt;next;     current ..." title="queue_cur = queue_cur-&gt;next;     current ..." coords="188,593,805,633" /><area shape="rect" href="#FMID_1670917215FM" alt="不会终止" title="不会终止" coords="188,747,253,769" /><area shape="rect" href="#FMID_180959819FM" alt="  while (1) { 
+
+ 
+
+     u8 skipped_fuzz; ..." title="  while (1) { 
+
+ 
+
+     u8 skipped_fuzz; ..." coords="273,636,442,856" /><area shape="rect" href="#FMID_583861225FM" alt="如果queue_cur为空的话，会被重新赋值，再跑一遍" title="如果queue_cur为空的话，会被重新赋值，再跑一遍" coords="273,859,565,881" /><area shape="rect" href="#FMID_1015259239FM" alt="如果一轮结束了还没有新的发现（新的路径加入queue）的话，使用splice的方 ..." title="如果一轮结束了还没有新的发现（新的路径加入queue）的话，使用splice的方 ..." coords="188,949,633,971" /><area shape="rect" href="#FMID_1273461730FM" alt="/* If we had a full queue cycle with no  ..." title="/* If we had a full queue cycle with no  ..." coords="653,884,1017,1032" /><area shape="rect" href="#FMID_1628928053FM" alt="static void show_stats(void) {" title="static void show_stats(void) {" coords="73,1035,248,1057" /></map>
+
+<div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10007&quot;)" id="imgN10007" /><a id="FMID_1897690566FM" /><div class="nodecontent">afl-fuzz</div><div class="content" id="N10007"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1000E&quot;)" id="imgN1000E" /><a id="FMID_662965335FM" /><div class="nodecontent">main fuzz loop</div><div class="content" id="N1000E"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10015&quot;)" id="imgN10015" /><a id="FMID_1776743583FM" /><div class="nodecontent">cull_queue();根据top_rated设置queue中的favored标志</div><div class="content" id="N10015"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_713506060FM" /><div class="nodecontent">参考update_bitmap_score(q);，在calibration的时候调用，在该函数中，设置top_rated[i]</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_339997769FM" /><div class="nodecontent">top_rated[i]-&gt;favored = 1;若不是favored则跳过该样本</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_879407733FM" /><div class="nodecontent">queued_favored++;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1313940729FM" /><div class="nodecontent">if (!top_rated[i]-&gt;was_fuzzed) pending_favored++;</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10034&quot;)" id="imgN10034" /><a id="FMID_621585882FM" /><div class="nodecontent">skipped_fuzz = fuzz_one(use_argv);</div><div class="content" id="N10034"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_154561728FM" /><div class="nodecontent"> if ((queue_cur-&gt;was_fuzzed || !queue_cur-&gt;favored) &amp;&amp; UR(100) &lt; SKIP_TO_NEW_PROB) return 1;//如果已经fuzz过，或者favored为0，则跳过该样本的变异</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_79109529FM" /><div class="nodecontent">fd = open(queue_cur-&gt;fname, O_RDONLY);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1719795449FM" /><div class="nodecontent">orig_in = in_buf = mmap(0, len, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_631019916FM" /><div class="nodecontent">out_buf = ck_alloc_nozero(len);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1187509445FM" /><div class="nodecontent">cur_depth = queue_cur-&gt;depth;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1005C&quot;)" id="imgN1005C" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_53720896FM" /><div class="nodecontent">TRIMMING 对in_buf删除部分，根据是否影响trace_bits</div><div class="content" id="N1005C"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10066&quot;)" id="imgN10066" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_773767383FM" /><div class="nodecontent">
+    <p>
+      if (!dumb_mode &amp;&amp; !queue_cur-&gt;trim_done) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          u8 res = trim_case(argv, queue_cur, in_buf);
+    </p>
+  </div><div class="content" id="N10066"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10083&quot;)" id="imgN10083" /><a id="FMID_248163630FM" /><div class="nodecontent">
+    <p>
+      /* Select initial chunk len, starting with large steps. */
+    </p>
+    <p>
+        len_p2 = next_p2(q-&gt;len); 乘以2
+    </p>
+  </div><div class="content" id="N10083"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_912737525FM" /><div class="nodecontent">
+    <p>
+      /* Find first power of two greater or equal to val. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      static u32 next_p2(u32 val) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+        u32 ret = 1;
+    </p>
+    <p>
+        while (val &gt; ret) ret &lt;&lt;= 1;
+    </p>
+    <p>
+        return ret;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      }
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_720840823FM" /><div class="nodecontent">
+    <p>
+      #define TRIM_MIN_BYTES      4
+    </p>
+    <p>
+      #define TRIM_START_STEPS    16
+    </p>
+    <p>
+      #define TRIM_END_STEPS      1024
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_848121610FM" /><div class="nodecontent">
+    <p>
+      remove_len = MAX(len_p2 / TRIM_START_STEPS, TRIM_MIN_BYTES);删除长度起始值为(文件长度*2/16)
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N100F5&quot;)" id="imgN100F5" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_1632366515FM" /><div class="nodecontent">
+    <p>
+      while (remove_len &gt;= MAX(len_p2 / TRIM_END_STEPS, TRIM_MIN_BYTES)) {(文件长度*2/1024) trim步长从len*2/16一直减少到len*2/1024，减少幅度为除以2
+    </p>
+  </div><div class="content" id="N100F5"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_550968263FM" /><div class="nodecontent">u32 remove_pos = remove_len;删除的起始位置</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10111&quot;)" id="imgN10111" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_353123392FM" /><div class="nodecontent">
+    <p>
+      直到删除位置超过文件长度
+    </p>
+    <p>
+      stage_max = q-&gt;len / remove_len;
+    </p>
+    <p>
+          while (remove_pos &lt; q-&gt;len) {
+    </p>
+  </div><div class="content" id="N10111"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_596417901FM" /><div class="nodecontent">u32 trim_avail = MIN(remove_len, q-&gt;len - remove_pos);删除的长度</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10133&quot;)" id="imgN10133" /><a id="FMID_446562628FM" /><div class="nodecontent">write_with_gap(in_buf, q-&gt;len, remove_pos, trim_avail);根据in_buf写out_file</div><div class="content" id="N10133"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10139&quot;)" id="imgN10139" /><a id="FMID_191434671FM" /><div class="nodecontent">static void write_with_gap(void* mem, u32 len, u32 skip_at, u32 skip_len) {</div><div class="content" id="N10139"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1792974654FM" /><div class="nodecontent">fd = open(out_file, O_WRONLY | O_CREAT | O_EXCL, 0600);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1572728772FM" /><div class="nodecontent">if (skip_at) ck_write(fd, mem, skip_at, out_file);一直写到trim起始位置</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_538682331FM" /><div class="nodecontent">if (tail_len) ck_write(fd, mem + skip_at + skip_len, tail_len, out_file);跳过skip_len，继续写tail_len长度的数据</div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1288016208FM" /><div class="nodecontent">fault = run_target(argv, exec_tmout);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_650860191FM" /><div class="nodecontent">cksum = hash32(trace_bits, MAP_SIZE, HASH_CONST);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1015F&quot;)" id="imgN1015F" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_126004727FM" /><div class="nodecontent">if (cksum == q-&gt;exec_cksum) {如果trim以后，trace_bits不变</div><div class="content" id="N1015F"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_890893784FM" /><div class="nodecontent">u32 move_tail = q-&gt;len - remove_pos - trim_avail;尾部的字节数</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_49237165FM" /><div class="nodecontent">q-&gt;len -= trim_avail;文件长度，减去trim掉的字节长度</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_152152358FM" /><div class="nodecontent">len_p2  = next_p2(q-&gt;len);计算新的</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1142137086FM" /><div class="nodecontent">memmove(in_buf + remove_pos, in_buf + remove_pos + trim_avail,move_tail);跳过trim，移动尾部</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_194399985FM" /><div class="nodecontent">
+    <p>
+      if (!needs_write) {
+    </p>
+    <p>
+                needs_write = 1;
+    </p>
+    <p>
+                memcpy(clean_trace, trace_bits, MAP_SIZE);
+    </p>
+    <p>
+              }
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1019E&quot;)" id="imgN1019E" /><a id="FMID_407995733FM" /><div class="nodecontent">否则</div><div class="content" id="N1019E"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_158051952FM" /><div class="nodecontent">remove_pos += remove_len;trim位置往前移动</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N101AB&quot;)" id="imgN101AB" /><a id="FMID_1278206369FM" /><div class="nodecontent">最后写到磁盘</div><div class="content" id="N101AB"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1810683756FM" /><div class="nodecontent">fd = open(q-&gt;fname, O_WRONLY | O_CREAT | O_EXCL, 0600);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_390661377FM" /><div class="nodecontent">ck_write(fd, in_buf, q-&gt;len, q-&gt;fname);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1913526810FM" /><div class="nodecontent">memcpy(trace_bits, clean_trace, MAP_SIZE);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_646196009FM" /><div class="nodecontent">update_bitmap_score(q); 给top_rated赋值为当前q</div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_172644401FM" /><div class="nodecontent">
+    <p>
+      remove_len &gt;&gt;= 1;删除长度除以2
+    </p>
+  </div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1574894683FM" /><div class="nodecontent">queue_cur-&gt;trim_done = 1;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1636564246FM" /><div class="nodecontent">if (len != queue_cur-&gt;len) len = queue_cur-&gt;len;</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_733952940FM" /><div class="nodecontent">memcpy(out_buf, in_buf, len);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N101F4&quot;)" id="imgN101F4" /><a id="FMID_769758440FM" /><div class="nodecontent">orig_perf = perf_score = calculate_score(queue_cur);</div><div class="content" id="N101F4"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1512116950FM" /><div class="nodecontent">u32 avg_exec_us = total_cal_us / total_cal_cycles;   u32 avg_bitmap_size = total_bitmap_size / total_bitmap_entries;   u32 perf_score = 100;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_946331857FM" /><div class="nodecontent">if (q-&gt;exec_us * 0.1 &gt; avg_exec_us) perf_score = 10; //执行时间越长，分数越低</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_391075986FM" /><div class="nodecontent">if (q-&gt;bitmap_size * 0.3 &gt; avg_bitmap_size) perf_score *= 3;//bitmap_size越大越好</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_315485519FM" /><div class="nodecontent">switch (q-&gt;depth) {      case 0 ... 3:   break;     case 4 ... 7:   perf_score *= 2; break;     case 8 ... 13:  perf_score *= 3; break;     case 14 ... 25: perf_score *= 4; break;//越深发现漏洞可能性越高</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_259465831FM" /><div class="nodecontent">return perf_score;</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1021A&quot;)" id="imgN1021A" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_73737330FM" /><div class="nodecontent">flip</div><div class="content" id="N1021A"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10223&quot;)" id="imgN10223" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_1743528803FM" /><div class="nodecontent">flip1</div><div class="content" id="N10223"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_144540310FM" /><div class="nodecontent">stage_short = "flip1";   stage_max   = len &lt;&lt; 3;   stage_name  = "bitflip 1/1";</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1448884707FM" /><div class="nodecontent"> stage_val_type = STAGE_VAL_NONE;    orig_hit_cnt = queued_paths + unique_crashes;    prev_cksum = queue_cur-&gt;exec_cksum;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10239&quot;)" id="imgN10239" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_1304726346FM" /><div class="nodecontent">for (stage_cur = 0; stage_cur &lt; stage_max; stage_cur++) {</div><div class="content" id="N10239"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10242&quot;)" id="imgN10242" /><a id="FMID_426395154FM" /><div class="nodecontent">FLIP_BIT(out_buf, stage_cur); 变异</div><div class="content" id="N10242"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_246525090FM" /><div class="nodecontent">#define FLIP_BIT(_ar, _b) do { \     u8* _arf = (u8*)(_ar); \     u32 _bf = (_b); \     _arf[(_bf) &gt;&gt; 3] ^= (128 &gt;&gt; ((_bf) &amp; 7)); \   } while (0)</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10250&quot;)" id="imgN10250" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_110682921FM" /><div class="nodecontent">if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry; 测试，如果产生了好的样本，就加入队列</div><div class="content" id="N10250"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10259&quot;)" id="imgN10259" /><a id="FMID_1384064918FM" /><div class="nodecontent">write_to_testcase(out_buf, len);  out/.cur_input</div><div class="content" id="N10259"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1103504049FM" /><div class="nodecontent">out/.cur_input</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1878882153FM" /><div class="nodecontent">if (out_file) {      unlink(out_file); /* Ignore errors. */      fd = open(out_file, O_WRONLY | O_CREAT | O_EXCL, 0600);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1387470851FM" /><div class="nodecontent">ck_write(fd, mem, len, out_file);</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10273&quot;)" id="imgN10273" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_899150090FM" /><div class="nodecontent">fault = run_target(argv, exec_tmout);</div><div class="content" id="N10273"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_227433903FM" /><div class="nodecontent">memset(trace_bits, 0, MAP_SIZE);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10283&quot;)" id="imgN10283" /><a id="FMID_1381866698FM" /><div class="nodecontent">if ((res = write(fsrv_ctl_fd, &amp;prev_timed_out, 4)) != 4) {向forkserver发信号，启动一个测试</div><div class="content" id="N10283"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_82659390FM" /><div class="nodecontent">while ( 1 )         {           v67 = 198;           if ( read(198, &amp;_afl_temp, 4uLL) != 4 )//等待启动命令，run_target</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10290&quot;)" id="imgN10290" /><a id="FMID_449118794FM" /><div class="nodecontent">if ((res = read(fsrv_st_fd, &amp;child_pid, 4)) != 4) {读取孙子进程的pid</div><div class="content" id="N10290"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1811107434FM" /><div class="nodecontent">LODWORD(v68) = fork();           if ( v68 &lt; 0 )             break;           if ( !v68 )             goto __afl_fork_resume;//孙子进程继续跑测试软件           _afl_fork_pid = v68;           write(199, &amp;_afl_fork_pid, 4uLL);//forkserver将孙子进程pid发给afl-fuzz</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_808769525FM" /><div class="nodecontent">it.it_value.tv_sec = (timeout / 1000);   it.it_value.tv_usec = (timeout % 1000) * 1000;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_245774735FM" /><div class="nodecontent">setitimer(ITIMER_REAL, &amp;it, NULL);设置超时，等待孙子进程结束</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N102A9&quot;)" id="imgN102A9" /><a id="FMID_95697986FM" /><div class="nodecontent">if ((res = read(fsrv_st_fd, &amp;status, 4)) != 4) {等待返回进程结束status</div><div class="content" id="N102A9"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1454106202FM" /><div class="nodecontent">LODWORD(v69) = waitpid(_afl_fork_pid, &amp;_afl_temp, 0);//https://linux.die.net/man/2/waitpid afl_temp保存exit status           if ( v69 &lt;= 0 )             break;           write(199, &amp;_afl_temp, 4uLL);//forkserver将孙子进程的退出状态发给afl-fuzz</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1219902992FM" /><div class="nodecontent">it.it_value.tv_sec = 0;   it.it_value.tv_usec = 0;    setitimer(ITIMER_REAL, &amp;it, NULL); 清空超时计时器</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1334759312FM" /><div class="nodecontent">total_execs++;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N102C2&quot;)" id="imgN102C2" /><a id="FMID_131161236FM" /><div class="nodecontent">classify_counts((u64*)trace_bits); 规范化trace_bits,也叫篮子bucket</div><div class="content" id="N102C2"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_406473250FM" /><div class="nodecontent">count_class_lookup8 （0，1,2,4,8，...128)</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1265407047FM" /><div class="nodecontent">count_class_lookup16(0000,0001,..0080)</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_468262176FM" /><div class="nodecontent">mem16[0] = count_class_lookup16[mem16[0]]; 重新赋值，命中次数，规范化</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_748685559FM" /><div class="nodecontent">if (child_timed_out) return FAULT_TMOUT; 超时</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_279835484FM" /><div class="nodecontent"> if (WIFSIGNALED(status) &amp;&amp; !stop_soon) {     kill_signal = WTERMSIG(status);     return FAULT_CRASH;   }</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1405956314FM" /><div class="nodecontent"> if (uses_asan &amp;&amp; WEXITSTATUS(status) == MSAN_ERROR) {     kill_signal = 0;     return FAULT_CRASH;   }</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1208575271FM" /><div class="nodecontent">return FAULT_NONE;</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1653856376FM" /><div class="nodecontent"> if (fault == FAULT_TMOUT) {      if (subseq_tmouts++ &gt; TMOUT_LIMIT) {       cur_skipped_paths++;       return 1;     }    }</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N102FA&quot;)" id="imgN102FA" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_1156635556FM" /><div class="nodecontent">queued_discovered += save_if_interesting(argv, out_buf, len, fault);</div><div class="content" id="N102FA"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10304&quot;)" id="imgN10304" /><a id="FMID_881748943FM" /><div class="nodecontent">正常退出的情况if (fault == crash_mode) {</div><div class="content" id="N10304"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1030B&quot;)" id="imgN1030B" /><a id="FMID_1071861935FM" /><div class="nodecontent">if (!(hnb = has_new_bits(virgin_bits))) {       <br />if (crash_mode) total_crashes++;       <br />return 0;     }   <br />没有新发现，直接返回0</div><div class="content" id="N1030B"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10311&quot;)" id="imgN10311" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_636800221FM" /><div class="nodecontent">static inline u8 has_new_bits(u8* virgin_map) {</div><div class="content" id="N10311"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_76625605FM" /><div class="nodecontent">u64* current = (u64*)trace_bits;   </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1279865598FM" /><div class="nodecontent">u64* virgin  = (u64*)virgin_map;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_517208767FM" /><div class="nodecontent">u32  i = (MAP_SIZE &gt;&gt; 3);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1032C&quot;)" id="imgN1032C" /><a id="FMID_1636324896FM" /><div class="nodecontent">while (i--) {</div><div class="content" id="N1032C"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_269315775FM" /><div class="nodecontent">if (unlikely(*current) &amp;&amp; unlikely(*current &amp; *virgin)) {        <br />if (likely(ret &lt; 2)) {          <br />u8* cur = (u8*)current;         <br />u8* vir = (u8*)virgin;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1807447084FM" /><div class="nodecontent">if ((cur[0] &amp;&amp; vir[0] == 0xff) || (cur[1] &amp;&amp; vir[1] == 0xff) ||            <br /> (cur[2] &amp;&amp; vir[2] == 0xff) || (cur[3] &amp;&amp; vir[3] == 0xff) ||             <br />(cur[4] &amp;&amp; vir[4] == 0xff) || (cur[5] &amp;&amp; vir[5] == 0xff) ||             <br />(cur[6] &amp;&amp; vir[6] == 0xff) || (cur[7] &amp;&amp; vir[7] == 0xff)) ret = 2;         <br />else ret = 1;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1855457185FM" /><div class="nodecontent">*virgin &amp;= ~*current;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_942656394FM" /><div class="nodecontent">current++;     virgin++;</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1057654508FM" /><div class="nodecontent">return ret;</div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10353&quot;)" id="imgN10353" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_1834555925FM" /><div class="nodecontent">有新的发现</div><div class="content" id="N10353"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_675654178FM" /><div class="nodecontent">fn = alloc_printf("%s/queue/id:%06u,%s", out_dir, queued_paths,describe_op(hnb)); 分配queue文件名</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10362&quot;)" id="imgN10362" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_335091713FM" /><div class="nodecontent">add_to_queue(fn, len, 0); 添加到队列</div><div class="content" id="N10362"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1036B&quot;)" id="imgN1036B" /><a id="FMID_148039442FM" /><div class="nodecontent">static void add_to_queue(u8* fname, u32 len, u8 passed_det) {</div><div class="content" id="N1036B"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1173739244FM" /><div class="nodecontent">struct queue_entry* q = ck_alloc(sizeof(struct queue_entry));<br />  q-&gt;fname        = fname;<br />  q-&gt;len          = len;<br />  q-&gt;depth        = cur_depth + 1;//比父亲样本深一层<br />  q-&gt;passed_det   = passed_det;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_34735937FM" /><div class="nodecontent">
+    <p>
+      if (queue_top) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          queue_top-&gt;next = q;//链入队列
+    </p>
+    <p>
+          queue_top = q;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+        } else q_prev100 = queue = queue_top = q;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1793527827FM" /><div class="nodecontent">queued_paths++;   pending_not_fuzzed++;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1112551513FM" /><div class="nodecontent">last_path_time = get_cur_time();</div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1181994518FM" /><div class="nodecontent">if (hnb == 2) {       queue_top-&gt;has_new_cov = 1;       queued_with_cov++;     }</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1149497883FM" /><div class="nodecontent">queue_top-&gt;exec_cksum = hash32(trace_bits, MAP_SIZE, HASH_CONST);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N103B4&quot;)" id="imgN103B4" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_1815703132FM" /><div class="nodecontent">res = calibrate_case(argv, queue_top, mem, queue_cycle - 1, 0);</div><div class="content" id="N103B4"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N103BD&quot;)" id="imgN103BD" /><a id="FMID_327754084FM" /><div class="nodecontent">static u8 calibrate_case(char** argv, struct queue_entry* q, u8* use_mem,  u32 handicap, u8 from_queue) {</div><div class="content" id="N103BD"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1748205081FM" /><div class="nodecontent">stage_name = "calibration";   stage_max  = CAL_CYCLES;是8</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1768188117FM" /><div class="nodecontent">q-&gt;cal_failed++;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N103D0&quot;)" id="imgN103D0" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_1733885471FM" /><div class="nodecontent">
+    <p>
+      if (dumb_mode != 1 &amp;&amp; !no_forkserver &amp;&amp; !forksrv_pid)
+    </p>
+    <p>
+          init_forkserver(argv);
+    </p>
+  </div><div class="content" id="N103D0"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_398167800FM" /><div class="nodecontent">if (pipe(st_pipe) || pipe(ctl_pipe)) PFATAL("pipe() failed");建立管道</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N103F0&quot;)" id="imgN103F0" /><a id="FMID_1281905454FM" /><div class="nodecontent">forksrv_pid = fork();子进程</div><div class="content" id="N103F0"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1888730870FM" /><div class="nodecontent">dup2(dev_null_fd, 1);     dup2(dev_null_fd, 2);关闭输出</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_545477304FM" /><div class="nodecontent">if (out_file) {        dup2(dev_null_fd, 0);      } 关闭输入</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1828042920FM" /><div class="nodecontent">
+    <p>
+      重定向管道到198 199
+    </p>
+    <p>
+      if (dup2(ctl_pipe[0], FORKSRV_FD) &lt; 0) PFATAL("dup2() failed");
+    </p>
+    <p>
+          if (dup2(st_pipe[1], FORKSRV_FD + 1) &lt; 0) PFATAL("dup2() failed");
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_82465954FM" /><div class="nodecontent">execv(target_path, argv);执行插桩后的程序，forkserver</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10423&quot;)" id="imgN10423" /><a id="FMID_1525003459FM" /><div class="nodecontent">父进程</div><div class="content" id="N10423"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1422612410FM" /><div class="nodecontent">
+    <p>
+      设置超时
+    </p>
+    <p>
+      it.it_value.tv_sec = ((exec_tmout * FORK_WAIT_MULT) / 1000);
+    </p>
+    <p>
+        it.it_value.tv_usec = ((exec_tmout * FORK_WAIT_MULT) % 1000) * 1000;
+    </p>
+    <p>
+        setitimer(ITIMER_REAL, &amp;it, NULL);
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10446&quot;)" id="imgN10446" /><a id="FMID_1359574229FM" /><div class="nodecontent">rlen = read(fsrv_st_fd, &amp;status, 4); 读取状态，forkserver启动</div><div class="content" id="N10446"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_285670528FM" /><div class="nodecontent">if ( write(199, &amp;_afl_temp, 4uLL) == 4 ) //通知afl-fuzz父进程init_forkserver函数，已经启动forkserver</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1098852878FM" /><div class="nodecontent">
+    <p>
+      清空计时器
+    </p>
+    <p>
+      it.it_value.tv_sec = 0;
+    </p>
+    <p>
+        it.it_value.tv_usec = 0;
+    </p>
+    <p>
+        setitimer(ITIMER_REAL, &amp;it, NULL);
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1346207936FM" /><div class="nodecontent">
+    <p>
+      if (rlen == 4) {
+    </p>
+    <p>
+          OKF("All right - fork server is up.");
+    </p>
+    <p>
+          return;
+    </p>
+    <p>
+        }
+    </p>
+  </div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1744977069FM" /><div class="nodecontent">if (q-&gt;exec_cksum) memcpy(first_trace, trace_bits, MAP_SIZE);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1532137966FM" /><div class="nodecontent">start_us = get_cur_time_us();</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1049B&quot;)" id="imgN1049B" /><a id="FMID_650175085FM" /><div class="nodecontent">for (stage_cur = 0; stage_cur &lt; stage_max; stage_cur++) {</div><div class="content" id="N1049B"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_445553565FM" /><div class="nodecontent">write_to_testcase(use_mem, q-&gt;len);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_408805697FM" /><div class="nodecontent">fault = run_target(argv, use_tmout);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_414857257FM" /><div class="nodecontent">if (stop_soon || fault != crash_mode) goto abort_calibration; 检验失败，应该正常退出，可是失败</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N104B3&quot;)" id="imgN104B3" /><a id="FMID_963389788FM" /><div class="nodecontent">没有新的发现，也表示校验失败<br />if (!dumb_mode &amp;&amp; !stage_cur &amp;&amp; !count_bytes(trace_bits)) {      <br /> fault = FAULT_NOINST;       <br />goto abort_calibration;     }</div><div class="content" id="N104B3"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N104B9&quot;)" id="imgN104B9" /><a id="FMID_1704429223FM" /><div class="nodecontent">static u32 count_bytes(u8* mem) {</div><div class="content" id="N104B9"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1373652237FM" /><div class="nodecontent">
+    <p>
+      static u32 count_bytes(u8* mem) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+        u32* ptr = (u32*)mem;
+    </p>
+    <p>
+        u32  i   = (MAP_SIZE &gt;&gt; 2);
+    </p>
+    <p>
+        u32  ret = 0;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+        while (i--) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          u32 v = *(ptr++);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          if (!v) continue;
+    </p>
+    <p>
+          if (v &amp; FF(0)) ret++;
+    </p>
+    <p>
+          if (v &amp; FF(1)) ret++;
+    </p>
+    <p>
+          if (v &amp; FF(2)) ret++;
+    </p>
+    <p>
+          if (v &amp; FF(3)) ret++;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+        }
+    </p>
+    <p>
+      
+    </p>
+    <p>
+        return ret;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      }
+    </p>
+  </div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_759319540FM" /><div class="nodecontent">cksum = hash32(trace_bits, MAP_SIZE, HASH_CONST);</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_732106976FM" /><div class="nodecontent">stop_us = get_cur_time_us();    total_cal_us     += stop_us - start_us;   total_cal_cycles += stage_max;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_324951327FM" /><div class="nodecontent">
+    <p>
+       q-&gt;exec_us     = (stop_us - start_us) / stage_max;
+    </p>
+    <p>
+        q-&gt;bitmap_size = count_bytes(trace_bits);
+    </p>
+    <p>
+        q-&gt;handicap    = handicap;
+    </p>
+    <p>
+        q-&gt;cal_failed  = 0;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_167325340FM" /><div class="nodecontent">total_bitmap_size += q-&gt;bitmap_size;   total_bitmap_entries++;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10541&quot;)" id="imgN10541" /><img src="afl-fuzz-6-24.html_files/icons/idea.png" alt="idea" /> <a id="FMID_1854907742FM" /><div class="nodecontent">update_bitmap_score(q);</div><div class="content" id="N10541"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1054A&quot;)" id="imgN1054A" /><a id="FMID_1933321346FM" /><div class="nodecontent">static void update_bitmap_score(struct queue_entry* q) {</div><div class="content" id="N1054A"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1530901800FM" /><div class="nodecontent">u64 fav_factor = q-&gt;exec_us * q-&gt;len; 执行时间和长度</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10556&quot;)" id="imgN10556" /><a id="FMID_76710074FM" /><div class="nodecontent">for (i = 0; i &lt; MAP_SIZE; i++)</div><div class="content" id="N10556"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1055C&quot;)" id="imgN1055C" /><a id="FMID_1545414370FM" /><div class="nodecontent">if (trace_bits[i]) {//新发现</div><div class="content" id="N1055C"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10562&quot;)" id="imgN10562" /><a id="FMID_1865980200FM" /><div class="nodecontent">原来该tuple有最优的q对应的情况</div><div class="content" id="N10562"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10568&quot;)" id="imgN10568" /><a id="FMID_747051522FM" /><div class="nodecontent">
+    <p>
+      if (top_rated[i]) {//该tuple原来就有q对应
+    </p>
+  </div><div class="content" id="N10568"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1255492922FM" /><div class="nodecontent">if (fav_factor &gt; top_rated[i]-&gt;exec_us * top_rated[i]-&gt;len) continue; 如果不如原来的，查询下一个tuple</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_177084552FM" /><div class="nodecontent">
+    <p>
+      否则替换原来的，原来的引用计数减一
+    </p>
+    <p>
+      if (!--top_rated[i]-&gt;tc_ref) {
+    </p>
+    <p>
+                 ck_free(top_rated[i]-&gt;trace_mini);
+    </p>
+    <p>
+                 top_rated[i]-&gt;trace_mini = 0;
+    </p>
+    <p>
+               }
+    </p>
+  </div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N105A3&quot;)" id="imgN105A3" /><a id="FMID_1409898810FM" /><div class="nodecontent">原来该tuple没有最优的q对应的情况，直接赋值</div><div class="content" id="N105A3"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1828631609FM" /><div class="nodecontent">top_rated[i] = q;        q-&gt;tc_ref++;</div></div></div></div></div></div></div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_776877126FM" /><div class="nodecontent">return fault;</div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1457131619FM" /><div class="nodecontent">
+    <p>
+      fd = open(fn, O_WRONLY | O_CREAT | O_EXCL, 0600);
+    </p>
+    <p>
+          if (fd &lt; 0) PFATAL("Unable to create '%s'", fn);
+    </p>
+    <p>
+          ck_write(fd, mem, len, fn);
+    </p>
+    <p>
+          close(fd);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          keeping = 1; //返回keeping为1
+    </p>
+  </div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N105E1&quot;)" id="imgN105E1" /><a id="FMID_1633326133FM" /><div class="nodecontent">case FAULT_TMOUT:</div><div class="content" id="N105E1"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N105E7&quot;)" id="imgN105E7" /><a id="FMID_1498410217FM" /><div class="nodecontent">simplify_trace((u64*)trace_bits);</div><div class="content" id="N105E7"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1248012621FM" /><div class="nodecontent">mem8[0] = simplify_lookup[mem8[0]];</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_824680045FM" /><div class="nodecontent">static const u8 simplify_lookup[256] = {     [0]         = 1,   [1 ... 255] = 128  };</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1267284820FM" /><div class="nodecontent">Destructively simplify trace by eliminating hit count information    and replacing it with 0x80 or 0x01 depending on whether the tuple    is hit or not. Called on every new crash or timeout, should be    reasonably fast.</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_476579866FM" /><div class="nodecontent">fn = alloc_printf("%s/hangs/id:%06llu,%s", out_dir,unique_hangs, describe_op(0)); 文件名</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_533851145FM" /><div class="nodecontent">unique_hangs++;        last_hang_time = get_cur_time();        break;</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1060D&quot;)" id="imgN1060D" /><a id="FMID_1494349656FM" /><div class="nodecontent">case FAULT_CRASH:</div><div class="content" id="N1060D"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1562984314FM" /><div class="nodecontent">total_crashes++;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1443578111FM" /><div class="nodecontent">simplify_trace((u64*)trace_bits);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1428169640FM" /><div class="nodecontent">if (!has_new_bits(virgin_crash)) return keeping;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1293173599FM" /><div class="nodecontent">fn = alloc_printf("%s/crashes/id:%06llu,sig:%02u,%s", out_dir,  unique_crashes, kill_signal, describe_op(0));</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1598918882FM" /><div class="nodecontent">unique_crashes++;        last_crash_time = get_cur_time();       last_crash_execs = total_execs;        break;</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_441125438FM" /><div class="nodecontent">上面两个都是异常，返回的keeping为0</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_927663725FM" /><div class="nodecontent">fd = open(fn, O_WRONLY | O_CREAT | O_EXCL, 0600);   <br />if (fd &lt; 0) PFATAL("Unable to create '%s'", fn);   <br />ck_write(fd, mem, len, fn);   <br />close(fd);    <br />ck_free(fn);    <br />return keeping;</div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_929653660FM" /><div class="nodecontent">FLIP_BIT(out_buf, stage_cur); 还原</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_43438884FM" /><div class="nodecontent">new_hit_cnt = queued_paths + unique_crashes;    stage_finds[STAGE_FLIP1]  += new_hit_cnt - orig_hit_cnt;   stage_cycles[STAGE_FLIP1] += stage_max;</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1064E&quot;)" id="imgN1064E" /><a id="FMID_1984599561FM" /><div class="nodecontent">bitflip 2/1</div><div class="content" id="N1064E"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_319886480FM" /><div class="nodecontent">
+    <p>
+      FLIP_BIT(out_buf, stage_cur);
+    </p>
+    <p>
+          FLIP_BIT(out_buf, stage_cur + 1);
+    </p>
+    <p>
+      if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10670&quot;)" id="imgN10670" /><a id="FMID_1594967675FM" /><div class="nodecontent">bitflip 4/1</div><div class="content" id="N10670"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1896288385FM" /><div class="nodecontent">
+    <p>
+      FLIP_BIT(out_buf, stage_cur);
+    </p>
+    <p>
+          FLIP_BIT(out_buf, stage_cur + 1);
+    </p>
+    <p>
+          FLIP_BIT(out_buf, stage_cur + 2);
+    </p>
+    <p>
+          FLIP_BIT(out_buf, stage_cur + 3);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1069B&quot;)" id="imgN1069B" /><a id="FMID_1141244560FM" /><div class="nodecontent">bitflip 8/8</div><div class="content" id="N1069B"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1415395917FM" /><div class="nodecontent">
+    <p>
+      out_buf[stage_cur] ^= 0xFF;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N106BC&quot;)" id="imgN106BC" /><a id="FMID_402087825FM" /><div class="nodecontent">
+    <p>
+      如果发现改变字节后，trace不一样就设置
+    </p>
+    <p>
+      eff_map[EFF_APOS(stage_cur)] = 1
+    </p>
+    <p>
+      if (cksum != queue_cur-&gt;exec_cksum) {
+    </p>
+    <p>
+              eff_map[EFF_APOS(stage_cur)] = 1;
+    </p>
+    <p>
+              eff_cnt++;
+    </p>
+    <p>
+            }
+    </p>
+  </div><div class="content" id="N106BC"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1007145724FM" /><div class="nodecontent">一个字节，八位，表示样本中8个字节是否影响trace</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1201102628FM" /><div class="nodecontent">代替了经典的污点分析</div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N106EC&quot;)" id="imgN106EC" /><a id="FMID_849883579FM" /><div class="nodecontent">bitflip 16/8</div><div class="content" id="N106EC"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_679216384FM" /><div class="nodecontent">
+    <p>
+      如果是不影响trace的样本中的字节，我们就跳过
+    </p>
+    <p>
+      if (!eff_map[EFF_APOS(i)] &amp;&amp; !eff_map[EFF_APOS(i + 1)]) {
+    </p>
+    <p>
+            stage_max--;
+    </p>
+    <p>
+            continue;
+    </p>
+    <p>
+          }
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1504189828FM" /><div class="nodecontent">*(u16*)(out_buf + i) ^= 0xFFFF;</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1071A&quot;)" id="imgN1071A" /><a id="FMID_1236101035FM" /><div class="nodecontent">bitflip 32/8</div><div class="content" id="N1071A"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1307404694FM" /><div class="nodecontent">
+    <p>
+      /* Let's consult the effector map... */
+    </p>
+    <p>
+          if (!eff_map[EFF_APOS(i)] &amp;&amp; !eff_map[EFF_APOS(i + 1)] &amp;&amp;
+    </p>
+    <p>
+              !eff_map[EFF_APOS(i + 2)] &amp;&amp; !eff_map[EFF_APOS(i + 3)]) {
+    </p>
+    <p>
+            stage_max--;
+    </p>
+    <p>
+            continue;
+    </p>
+    <p>
+          }
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1647299041FM" /><div class="nodecontent">*(u32*)(out_buf + i) ^= 0xFFFFFFFF;</div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1074C&quot;)" id="imgN1074C" /><a id="FMID_1759479208FM" /><div class="nodecontent">arith</div><div class="content" id="N1074C"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10753&quot;)" id="imgN10753" /><a id="FMID_429454753FM" /><div class="nodecontent">arith 8/8</div><div class="content" id="N10753"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_834210839FM" /><div class="nodecontent">
+    <p>
+      /* Let's consult the effector map... */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          if (!eff_map[EFF_APOS(i)]) {
+    </p>
+    <p>
+            stage_max -= 2 * ARITH_MAX;
+    </p>
+    <p>
+            continue;
+    </p>
+    <p>
+          }
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1569355680FM" /><div class="nodecontent">u8 orig = out_buf[i];</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_917821519FM" /><div class="nodecontent">
+    <p>
+      for (j = 1; j &lt;= ARITH_MAX; j++) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            u8 r = orig ^ (orig + j);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            /* Do arithmetic operations only if the result couldn't be a product
+    </p>
+    <p>
+               of a bitflip. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            if (!could_be_bitflip(r)) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+              stage_cur_val = j;
+    </p>
+    <p>
+              out_buf[i] = orig + j;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+              if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
+    </p>
+    <p>
+              stage_cur++;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N107BF&quot;)" id="imgN107BF" /><a id="FMID_1758205555FM" /><div class="nodecontent">arith 16/8</div><div class="content" id="N107BF"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1992389770FM" /><div class="nodecontent">
+    <p>
+      /* Let's consult the effector map... */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          if (!eff_map[EFF_APOS(i)] &amp;&amp; !eff_map[EFF_APOS(i + 1)]) {
+    </p>
+    <p>
+            stage_max -= 4 * ARITH_MAX;
+    </p>
+    <p>
+            continue;
+    </p>
+    <p>
+          }
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1060388768FM" /><div class="nodecontent">
+    <p>
+      stage_cur_val = j;
+    </p>
+    <p>
+              *(u16*)(out_buf + i) = orig + j;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+              if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
+    </p>
+    <p>
+              stage_cur++;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1080A&quot;)" id="imgN1080A" /><a id="FMID_1949856254FM" /><div class="nodecontent">arith 32/8</div><div class="content" id="N1080A"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1035592039FM" /><div class="nodecontent">
+    <p>
+      /* Let's consult the effector map... */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          if (!eff_map[EFF_APOS(i)] &amp;&amp; !eff_map[EFF_APOS(i + 1)] &amp;&amp;
+    </p>
+    <p>
+              !eff_map[EFF_APOS(i + 2)] &amp;&amp; !eff_map[EFF_APOS(i + 3)]) {
+    </p>
+    <p>
+            stage_max -= 4 * ARITH_MAX;
+    </p>
+    <p>
+            continue;
+    </p>
+    <p>
+          }
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1479335631FM" /><div class="nodecontent">
+    <p>
+      *(u32*)(out_buf + i) = orig + j;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+              if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
+    </p>
+  </div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10853&quot;)" id="imgN10853" /><a id="FMID_1753914654FM" /><div class="nodecontent">interest</div><div class="content" id="N10853"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1085A&quot;)" id="imgN1085A" /><a id="FMID_692781294FM" /><div class="nodecontent">interest 8/8</div><div class="content" id="N1085A"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1820013523FM" /><div class="nodecontent">
+    <p>
+      if (!eff_map[EFF_APOS(i)]) {
+    </p>
+    <p>
+            stage_max -= sizeof(interesting_8);
+    </p>
+    <p>
+            continue;
+    </p>
+    <p>
+          }
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_317641077FM" /><div class="nodecontent">
+    <p>
+      #define INTERESTING_8 \
+    </p>
+    <p>
+        -128,          /* Overflow signed 8-bit when decremented  */ \
+    </p>
+    <p>
+        -1,            /*                                         */ \
+    </p>
+    <p>
+         0,            /*                                         */ \
+    </p>
+    <p>
+         1,            /*                                         */ \
+    </p>
+    <p>
+         16,           /* One-off with common buffer size         */ \
+    </p>
+    <p>
+         32,           /* One-off with common buffer size         */ \
+    </p>
+    <p>
+         64,           /* One-off with common buffer size         */ \
+    </p>
+    <p>
+         100,          /* One-off with common buffer size         */ \
+    </p>
+    <p>
+         127           /* Overflow signed 8-bit when incremented  */
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1760582754FM" /><div class="nodecontent">
+    <p>
+      for (j = 0; j &lt; sizeof(interesting_8); j++) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            /* Skip if the value could be a product of bitflips or arithmetics. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            if (could_be_bitflip(orig ^ (u8)interesting_8[j]) ||
+    </p>
+    <p>
+                could_be_arith(orig, (u8)interesting_8[j], 1)) {
+    </p>
+    <p>
+              stage_max--;
+    </p>
+    <p>
+              continue;
+    </p>
+    <p>
+            }
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1956907413FM" /><div class="nodecontent">
+    <p>
+      stage_cur_val = interesting_8[j];
+    </p>
+    <p>
+            out_buf[i] = interesting_8[j];
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N108F7&quot;)" id="imgN108F7" /><a id="FMID_486106963FM" /><div class="nodecontent">interest 16/8</div><div class="content" id="N108F7"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_9629934FM" /><div class="nodecontent">
+    <p>
+      /* Let's consult the effector map... */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          if (!eff_map[EFF_APOS(i)] &amp;&amp; !eff_map[EFF_APOS(i + 1)]) {
+    </p>
+    <p>
+            stage_max -= sizeof(interesting_16);
+    </p>
+    <p>
+            continue;
+    </p>
+    <p>
+          }
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1527914226FM" /><div class="nodecontent">
+    <p>
+      if (!could_be_bitflip(orig ^ (u16)interesting_16[j]) &amp;&amp;
+    </p>
+    <p>
+                !could_be_arith(orig, (u16)interesting_16[j], 2) &amp;&amp;
+    </p>
+    <p>
+                !could_be_interest(orig, (u16)interesting_16[j], 2, 0)) {
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_772156572FM" /><div class="nodecontent">*(u16*)(out_buf + i) = interesting_16[j];          if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10942&quot;)" id="imgN10942" /><a id="FMID_545700158FM" /><div class="nodecontent">interest 32/8</div><div class="content" id="N10942"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_791246616FM" /><div class="nodecontent">
+    <p>
+      *(u32*)(out_buf + i) = interesting_32[j];
+    </p>
+    <p>
+      
+    </p>
+    <p>
+              if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
+    </p>
+  </div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10965&quot;)" id="imgN10965" /><a id="FMID_1731411285FM" /><div class="nodecontent">DICTIONARY</div><div class="content" id="N10965"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1096C&quot;)" id="imgN1096C" /><a id="FMID_1319604856FM" /><div class="nodecontent">user extras (over)</div><div class="content" id="N1096C"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1962440507FM" /><div class="nodecontent">
+    <p>
+      last_len = extras[j].len;
+    </p>
+    <p>
+            memcpy(out_buf + i, extras[j].data, last_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10990&quot;)" id="imgN10990" /><a id="FMID_1779390823FM" /><div class="nodecontent">user extras (insert)</div><div class="content" id="N10990"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1835516658FM" /><div class="nodecontent">
+    <p>
+      /* Insert token */
+    </p>
+    <p>
+            memcpy(ex_tmp + i, extras[j].data, extras[j].len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            /* Copy tail */
+    </p>
+    <p>
+            memcpy(ex_tmp + i + extras[j].len, out_buf + i, len - i);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            if (common_fuzz_stuff(argv, ex_tmp, len + extras[j].len)) {
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N109BD&quot;)" id="imgN109BD" /><a id="FMID_881276583FM" /><div class="nodecontent">auto extras (over)</div><div class="content" id="N109BD"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_923149036FM" /><div class="nodecontent">
+    <p>
+      last_len = a_extras[j].len;
+    </p>
+    <p>
+            memcpy(out_buf + i, a_extras[j].data, last_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            if (common_fuzz_stuff(argv, out_buf, len)) goto abandon_entry;
+    </p>
+  </div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N109E2&quot;)" id="imgN109E2" /><a id="FMID_714762161FM" /><div class="nodecontent">havoc</div><div class="content" id="N109E2"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_817825302FM" /><div class="nodecontent">stage_max   = (doing_det ? HAVOC_CYCLES_INIT : HAVOC_CYCLES) * perf_score / havoc_div / 100; 这里的次数与分数有关</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N109EF&quot;)" id="imgN109EF" /><a id="FMID_637103241FM" /><div class="nodecontent">
+    <p>
+      是一个组合
+    </p>
+    <p>
+      for (stage_cur = 0; stage_cur &lt; stage_max; stage_cur++) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          u32 use_stacking = 1 &lt;&lt; (1 + UR(HAVOC_STACK_POW2));
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          stage_cur_val = use_stacking;
+    </p>
+    <p>
+       
+    </p>
+    <p>
+          for (i = 0; i &lt; use_stacking; i++) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            switch (UR(15 + ((extras_cnt + a_extras_cnt) ? 2 : 0))) {
+    </p>
+  </div><div class="content" id="N109EF"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10A1D&quot;)" id="imgN10A1D" /><a id="FMID_1032326856FM" /><div class="nodecontent">flip</div><div class="content" id="N10A1D"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_598494614FM" /><div class="nodecontent">
+    <p>
+      case 0:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                /* Flip a single bit somewhere. Spooky! */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                FLIP_BIT(out_buf, UR(temp_len &lt;&lt; 3));
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10A48&quot;)" id="imgN10A48" /><a id="FMID_1533527174FM" /><div class="nodecontent">interesting</div><div class="content" id="N10A48"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_299400724FM" /><div class="nodecontent">
+    <p>
+      case 1:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                /* Set byte to interesting value. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                out_buf[UR(temp_len)] = interesting_8[UR(sizeof(interesting_8))];
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1589745625FM" /><div class="nodecontent">
+    <p>
+       case 2:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                /* Set word to interesting value, randomly choosing endian. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (temp_len &lt; 2) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (UR(2)) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  *(u16*)(out_buf + UR(temp_len - 1)) =
+    </p>
+    <p>
+                    interesting_16[UR(sizeof(interesting_16) &gt;&gt; 1)];
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                } else {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  *(u16*)(out_buf + UR(temp_len - 1)) = SWAP16(
+    </p>
+    <p>
+                    interesting_16[UR(sizeof(interesting_16) &gt;&gt; 1)]);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                }
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_20026886FM" /><div class="nodecontent">
+    <p>
+      case 3:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                /* Set dword to interesting value, randomly choosing endian. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (temp_len &lt; 4) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (UR(2)) {
+    </p>
+    <p>
+       
+    </p>
+    <p>
+                  *(u32*)(out_buf + UR(temp_len - 3)) =
+    </p>
+    <p>
+                    interesting_32[UR(sizeof(interesting_32) &gt;&gt; 2)];
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                } else {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  *(u32*)(out_buf + UR(temp_len - 3)) = SWAP32(
+    </p>
+    <p>
+                    interesting_32[UR(sizeof(interesting_32) &gt;&gt; 2)]);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                }
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10B07&quot;)" id="imgN10B07" /><a id="FMID_413106184FM" /><div class="nodecontent">+-</div><div class="content" id="N10B07"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_406061194FM" /><div class="nodecontent">
+    <p>
+      case 4:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                /* Randomly subtract from byte. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                out_buf[UR(temp_len)] -= 1 + UR(ARITH_MAX);
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1242864006FM" /><div class="nodecontent">
+    <p>
+      case 5:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                /* Randomly add to byte. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                out_buf[UR(temp_len)] += 1 + UR(ARITH_MAX);
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1697952454FM" /><div class="nodecontent">
+    <p>
+      case 6:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                /* Randomly subtract from word, random endian. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (temp_len &lt; 2) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (UR(2)) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u32 pos = UR(temp_len - 1);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  *(u16*)(out_buf + pos) -= 1 + UR(ARITH_MAX);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                } else {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u32 pos = UR(temp_len - 1);
+    </p>
+    <p>
+                  u16 num = 1 + UR(ARITH_MAX);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  *(u16*)(out_buf + pos) =
+    </p>
+    <p>
+                    SWAP16(SWAP16(*(u16*)(out_buf + pos)) - num);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                }
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1435857333FM" /><div class="nodecontent">
+    <p>
+      case 7:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                /* Randomly add to word, random endian. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (temp_len &lt; 2) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (UR(2)) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u32 pos = UR(temp_len - 1);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  *(u16*)(out_buf + pos) += 1 + UR(ARITH_MAX);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                } else {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u32 pos = UR(temp_len - 1);
+    </p>
+    <p>
+                  u16 num = 1 + UR(ARITH_MAX);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  *(u16*)(out_buf + pos) =
+    </p>
+    <p>
+                    SWAP16(SWAP16(*(u16*)(out_buf + pos)) + num);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                }
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_827573377FM" /><div class="nodecontent">
+    <p>
+      case 8:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                /* Randomly subtract from dword, random endian. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (temp_len &lt; 4) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (UR(2)) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u32 pos = UR(temp_len - 3);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  *(u32*)(out_buf + pos) -= 1 + UR(ARITH_MAX);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                } else {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u32 pos = UR(temp_len - 3);
+    </p>
+    <p>
+                  u32 num = 1 + UR(ARITH_MAX);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  *(u32*)(out_buf + pos) =
+    </p>
+    <p>
+                    SWAP32(SWAP32(*(u32*)(out_buf + pos)) - num);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                }
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_599776178FM" /><div class="nodecontent">
+    <p>
+      case 9:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                /* Randomly add to dword, random endian. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (temp_len &lt; 4) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (UR(2)) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u32 pos = UR(temp_len - 3);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  *(u32*)(out_buf + pos) += 1 + UR(ARITH_MAX);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                } else {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u32 pos = UR(temp_len - 3);
+    </p>
+    <p>
+                  u32 num = 1 + UR(ARITH_MAX);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  *(u32*)(out_buf + pos) =
+    </p>
+    <p>
+                    SWAP32(SWAP32(*(u32*)(out_buf + pos)) + num);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                }
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10CAD&quot;)" id="imgN10CAD" /><a id="FMID_883048983FM" /><div class="nodecontent">random</div><div class="content" id="N10CAD"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1432308968FM" /><div class="nodecontent">
+    <p>
+      case 10:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                /* Just set a random byte to a random value. Because,
+    </p>
+    <p>
+                   why not. We use XOR with 1-255 to eliminate the
+    </p>
+    <p>
+                   possibility of a no-op. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                out_buf[UR(temp_len)] ^= 1 + UR(255);
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10CDE&quot;)" id="imgN10CDE" /><a id="FMID_34176432FM" /><div class="nodecontent">delete</div><div class="content" id="N10CDE"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_635081013FM" /><div class="nodecontent">
+    <p>
+      case 11 ... 12: {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  /* Delete bytes. We're making this a bit more likely
+    </p>
+    <p>
+                     than insertion (the next option) in hopes of keeping
+    </p>
+    <p>
+                     files reasonably small. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u32 del_from, del_len;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  if (temp_len &lt; 2) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  /* Don't delete too much. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  del_len = choose_block_len(temp_len - 1);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  del_from = UR(temp_len - del_len + 1);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  memmove(out_buf + del_from, out_buf + del_from + del_len,
+    </p>
+    <p>
+                          temp_len - del_from - del_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  temp_len -= del_len;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                }
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10D3F&quot;)" id="imgN10D3F" /><a id="FMID_2771810FM" /><div class="nodecontent">clone insert</div><div class="content" id="N10D3F"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_986749648FM" /><div class="nodecontent">
+    <p>
+      case 13:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                if (temp_len + HAVOC_BLK_XL &lt; MAX_FILE) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  /* Clone bytes (75%) or insert a block of constant bytes (25%). */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u8  actually_clone = UR(4);
+    </p>
+    <p>
+                  u32 clone_from, clone_to, clone_len;
+    </p>
+    <p>
+                  u8* new_buf;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  if (actually_clone) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    clone_len  = choose_block_len(temp_len);
+    </p>
+    <p>
+                    clone_from = UR(temp_len - clone_len + 1);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  } else {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    clone_len = choose_block_len(HAVOC_BLK_XL);
+    </p>
+    <p>
+                    clone_from = 0;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  }
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  clone_to   = UR(temp_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  new_buf = ck_alloc_nozero(temp_len + clone_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  /* Head */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  memcpy(new_buf, out_buf, clone_to);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  /* Inserted part */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  if (actually_clone)
+    </p>
+    <p>
+                    memcpy(new_buf + clone_to, out_buf + clone_from, clone_len);
+    </p>
+    <p>
+                  else
+    </p>
+    <p>
+                    memset(new_buf + clone_to,
+    </p>
+    <p>
+                           UR(2) ? UR(256) : out_buf[UR(temp_len)], clone_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  /* Tail */
+    </p>
+    <p>
+                  memcpy(new_buf + clone_to + clone_len, out_buf + clone_to,
+    </p>
+    <p>
+                         temp_len - clone_to);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  ck_free(out_buf);
+    </p>
+    <p>
+                  out_buf = new_buf;
+    </p>
+    <p>
+                  temp_len += clone_len;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                }
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                break;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10DEB&quot;)" id="imgN10DEB" /><a id="FMID_1721783745FM" /><div class="nodecontent">overwrite block</div><div class="content" id="N10DEB"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_686995130FM" /><div class="nodecontent">
+    <p>
+      case 14: {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  /* Overwrite bytes with a randomly selected chunk (75%) or fixed
+    </p>
+    <p>
+                     bytes (25%). */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u32 copy_from, copy_to, copy_len;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  if (temp_len &lt; 2) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  copy_len  = choose_block_len(temp_len - 1);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  copy_from = UR(temp_len - copy_len + 1);
+    </p>
+    <p>
+                  copy_to   = UR(temp_len - copy_len + 1);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  if (UR(4)) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    if (copy_from != copy_to)
+    </p>
+    <p>
+                      memmove(out_buf + copy_to, out_buf + copy_from, copy_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  } else memset(out_buf + copy_to,
+    </p>
+    <p>
+                                UR(2) ? UR(256) : out_buf[UR(temp_len)], copy_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                }
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10E4F&quot;)" id="imgN10E4F" /><a id="FMID_240709750FM" /><div class="nodecontent">overwrite extra</div><div class="content" id="N10E4F"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1016056434FM" /><div class="nodecontent">
+    <p>
+      case 15: {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  /* Overwrite bytes with an extra. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  if (!extras_cnt || (a_extras_cnt &amp;&amp; UR(2))) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    /* No user-specified extras or odds in our favor. Let's use an
+    </p>
+    <p>
+                       auto-detected one. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    u32 use_extra = UR(a_extras_cnt);
+    </p>
+    <p>
+                    u32 extra_len = a_extras[use_extra].len;
+    </p>
+    <p>
+                    u32 insert_at;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    if (extra_len &gt; temp_len) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    insert_at = UR(temp_len - extra_len + 1);
+    </p>
+    <p>
+                    memcpy(out_buf + insert_at, a_extras[use_extra].data, extra_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  } else {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    /* No auto extras or odds in our favor. Use the dictionary. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    u32 use_extra = UR(extras_cnt);
+    </p>
+    <p>
+                    u32 extra_len = extras[use_extra].len;
+    </p>
+    <p>
+                    u32 insert_at;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    if (extra_len &gt; temp_len) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    insert_at = UR(temp_len - extra_len + 1);
+    </p>
+    <p>
+                    memcpy(out_buf + insert_at, extras[use_extra].data, extra_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  }
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                }
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10ED4&quot;)" id="imgN10ED4" /><a id="FMID_1205663284FM" /><div class="nodecontent">insert extra</div><div class="content" id="N10ED4"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_832789234FM" /><div class="nodecontent">
+    <p>
+      case 16: {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  u32 use_extra, extra_len, insert_at = UR(temp_len + 1);
+    </p>
+    <p>
+                  u8* new_buf;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  /* Insert an extra. Do the same dice-rolling stuff as for the
+    </p>
+    <p>
+                     previous case. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  if (!extras_cnt || (a_extras_cnt &amp;&amp; UR(2))) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    use_extra = UR(a_extras_cnt);
+    </p>
+    <p>
+                    extra_len = a_extras[use_extra].len;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    if (temp_len + extra_len &gt;= MAX_FILE) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    new_buf = ck_alloc_nozero(temp_len + extra_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    /* Head */
+    </p>
+    <p>
+                    memcpy(new_buf, out_buf, insert_at);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    /* Inserted part */
+    </p>
+    <p>
+                    memcpy(new_buf + insert_at, a_extras[use_extra].data, extra_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  } else {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    use_extra = UR(extras_cnt);
+    </p>
+    <p>
+                    extra_len = extras[use_extra].len;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    if (temp_len + extra_len &gt;= MAX_FILE) break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    new_buf = ck_alloc_nozero(temp_len + extra_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    /* Head */
+    </p>
+    <p>
+                    memcpy(new_buf, out_buf, insert_at);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                    /* Inserted part */
+    </p>
+    <p>
+                    memcpy(new_buf + insert_at, extras[use_extra].data, extra_len);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  }
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  /* Tail */
+    </p>
+    <p>
+                  memcpy(new_buf + insert_at + extra_len, out_buf + insert_at,
+    </p>
+    <p>
+                         temp_len - insert_at);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  ck_free(out_buf);
+    </p>
+    <p>
+                  out_buf   = new_buf;
+    </p>
+    <p>
+                  temp_len += extra_len;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                  break;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+                }
+    </p>
+  </div></div></div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N10F88&quot;)" id="imgN10F88" /><a id="FMID_1965587396FM" /><div class="nodecontent">splicing</div><div class="content" id="N10F88"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1598149443FM" /><div class="nodecontent">
+    <p>
+      /* Pick a random queue entry and seek to it. Don't splice with yourself. */
+    </p>
+    <p>
+          do { tid = UR(queued_paths); } while (tid == current_entry);
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1621741578FM" /><div class="nodecontent">
+    <p>
+      splicing_with = tid;
+    </p>
+    <p>
+          target = queue;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1042935571FM" /><div class="nodecontent">
+    <p>
+      遍历到target
+    </p>
+    <p>
+      while (tid &gt;= 100) { target = target-&gt;next_100; tid -= 100; }
+    </p>
+    <p>
+          while (tid--) target = target-&gt;next;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1162501004FM" /><div class="nodecontent">
+    <p>
+      /* Read the testcase into a new buffer. */
+    </p>
+    <p>
+          fd = open(target-&gt;fname, O_RDONLY);
+    </p>
+    <p>
+          if (fd &lt; 0) PFATAL("Unable to open '%s'", target-&gt;fname);
+    </p>
+    <p>
+          new_buf = ck_alloc_nozero(target-&gt;len);
+    </p>
+    <p>
+          ck_read(fd, new_buf, target-&gt;len, target-&gt;fname);
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_341474324FM" /><div class="nodecontent">
+    <p>
+      /* Find a suitable splicing location, somewhere between the first and
+    </p>
+    <p>
+             the last differing byte. Bail out if the difference is just a single
+    </p>
+    <p>
+             byte or so. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          locate_diffs(in_buf, new_buf, MIN(len, target-&gt;len), &amp;f_diff, &amp;l_diff);
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1623726451FM" /><div class="nodecontent">
+    <p>
+      /* Split somewhere between the first and last differing byte. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          split_at = f_diff + UR(l_diff - f_diff);
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_193544441FM" /><div class="nodecontent">
+    <p>
+      组合 
+    </p>
+    <p>
+      len = target-&gt;len;
+    </p>
+    <p>
+          memcpy(new_buf, in_buf, split_at);
+    </p>
+    <p>
+          in_buf = new_buf;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1998766030FM" /><div class="nodecontent">
+    <p>
+      组合写到out_buf 
+    </p>
+    <p>
+      ck_free(out_buf);
+    </p>
+    <p>
+          out_buf = ck_alloc_nozero(len);
+    </p>
+    <p>
+          memcpy(out_buf, in_buf, len);
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_23305813FM" /><div class="nodecontent">goto havoc_stage; 回去继续havoc</div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1954515654FM" /><div class="nodecontent">queue_cur = queue_cur-&gt;next;     current_entry++;遍历queue链表，通过save_if_interesting函数不断有新的样本链入队列</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N11079&quot;)" id="imgN11079" /><a id="FMID_1670917215FM" /><div class="nodecontent">不会终止</div><div class="content" id="N11079"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_180959819FM" /><div class="nodecontent">
+    <p>
+        while (1) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          u8 skipped_fuzz;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          cull_queue();
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          if (!queue_cur) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            queue_cycle++;
+    </p>
+    <p>
+            current_entry     = 0;
+    </p>
+    <p>
+            cur_skipped_paths = 0;
+    </p>
+    <p>
+            queue_cur         = queue;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_583861225FM" /><div class="nodecontent">如果queue_cur为空的话，会被重新赋值，再跑一遍</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N110BB&quot;)" id="imgN110BB" /><a id="FMID_1015259239FM" /><div class="nodecontent">
+    <p>
+      如果一轮结束了还没有新的发现（新的路径加入queue）的话，使用splice的方法
+    </p>
+  </div><div class="content" id="N110BB"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1273461730FM" /><div class="nodecontent">
+    <p>
+      /* If we had a full queue cycle with no new finds, try
+    </p>
+    <p>
+               recombination strategies next. */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            if (queued_paths == prev_queued) {
+    </p>
+    <p>
+      
+    </p>
+    <p>
+              if (use_splicing) cycles_wo_finds++; else use_splicing = 1;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+            } else cycles_wo_finds = 0;
+    </p>
+  </div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N110F9&quot;)" id="imgN110F9" /><a id="FMID_1628928053FM" /><div class="nodecontent">static void show_stats(void) {</div><div class="content" id="N110F9"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_569992267FM" /><div class="nodecontent">
+    <p>
+      t_bytes = count_non_255_bytes(virgin_bits);
+    </p>
+    <p>
+        t_byte_ratio = ((double)t_bytes * 100) / MAP_SIZE;
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_818551639FM" /><div class="nodecontent">stab_ratio = 100 - ((double)var_byte_count) * 100 / t_bytes;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1111E&quot;)" id="imgN1111E" /><a id="FMID_1326497693FM" /><div class="nodecontent">if (cur_ms - last_stats_ms &gt; STATS_UPDATE_SEC * 1000) {</div><div class="content" id="N1111E"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N11124&quot;)" id="imgN11124" /><a id="FMID_800345782FM" /><div class="nodecontent">write_stats_file(t_byte_ratio, stab_ratio, avg_exec);</div><div class="content" id="N11124"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_154590281FM" /><div class="nodecontent">u8* fn = alloc_printf("%s/fuzzer_stats", out_dir);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_485411797FM" /><div class="nodecontent">fd = open(fn, O_WRONLY | O_CREAT | O_TRUNC, 0600);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_405168554FM" /><div class="nodecontent">f = fdopen(fd, "w");</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1501524167FM" /><div class="nodecontent">
+    <p>
+      fprintf(f, "start_time        : %llu\n"
+    </p>
+    <p>
+                  
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1236134207FM" /><div class="nodecontent">cycles_done,     queue_cycle</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1115B&quot;)" id="imgN1115B" /><a id="FMID_1904276159FM" /><div class="nodecontent">save_auto();</div><div class="content" id="N1115B"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_868014940FM" /><div class="nodecontent">if (!auto_changed) return;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N11168&quot;)" id="imgN11168" /><a id="FMID_961834741FM" /><div class="nodecontent">static void maybe_add_auto(u8* mem, u32 len) {</div><div class="content" id="N11168"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_209770631FM" /><div class="nodecontent">
+    <p>
+      a_extras = ck_realloc_block(a_extras, (a_extras_cnt + 1) *
+    </p>
+    <p>
+                                      sizeof(struct extra_data));
+    </p>
+    <p>
+      
+    </p>
+    <p>
+          a_extras[a_extras_cnt].data = ck_memdup(mem, len);
+    </p>
+    <p>
+          a_extras[a_extras_cnt].len  = len;
+    </p>
+    <p>
+          a_extras_cnt++;
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1882325734FM" /><div class="nodecontent">
+    <p>
+      for (i = 0; i &lt; MIN(USE_AUTO_EXTRAS, a_extras_cnt); i++) {
+    </p>
+    <p>
+          u8* fn = alloc_printf("%s/queue/.state/auto_extras/auto_%06u", out_dir, i);
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_431397878FM" /><div class="nodecontent">fd = open(fn, O_WRONLY | O_CREAT | O_TRUNC, 0600);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_38614011FM" /><div class="nodecontent">ck_write(fd, a_extras[i].data, a_extras[i].len, fn);</div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N111B6&quot;)" id="imgN111B6" /><a id="FMID_67586785FM" /><div class="nodecontent">write_bitmap();</div><div class="content" id="N111B6"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N111BD&quot;)" id="imgN111BD" /><a id="FMID_300942036FM" /><div class="nodecontent">case 'B' main选项</div><div class="content" id="N111BD"><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N111C3&quot;)" id="imgN111C3" /><a id="FMID_1123020518FM" /><div class="nodecontent">
+    <p>
+      in_bitmap = optarg;
+    </p>
+    <p>
+              read_bitmap(in_bitmap);
+    </p>
+  </div><div class="content" id="N111C3"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_551938702FM" /><div class="nodecontent">s32 fd = open(fname, O_RDONLY);</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1100888396FM" /><div class="nodecontent">ck_read(fd, virgin_bits, MAP_SIZE, fname);</div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1368459277FM" /><div class="nodecontent">if (!bitmap_changed) return;</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_516101661FM" /><div class="nodecontent">
+    <p>
+      fname = alloc_printf("%s/fuzz_bitmap", out_dir);
+    </p>
+    <p>
+        fd = open(fname, O_WRONLY | O_CREAT | O_TRUNC, 0600);
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1859236185FM" /><div class="nodecontent">ck_write(fd, virgin_bits, MAP_SIZE, fname);</div></div></div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N1120C&quot;)" id="imgN1120C" /><a id="FMID_1142507769FM" /><div class="nodecontent">maybe_update_plot_file(t_byte_ratio, avg_exec);</div><div class="content" id="N1120C"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1901678568FM" /><div class="nodecontent">
+    <p>
+      fprintf(plot_file,
+    </p>
+    <p>
+                "%llu, %llu, %u, %u, %u, %u, %0.02f%%, %llu, %llu, %u, %0.02f\n",
+    </p>
+    <p>
+                get_cur_time() / 1000, queue_cycle - 1, current_entry, queued_paths,
+    </p>
+    <p>
+                pending_not_fuzzed, pending_favored, bitmap_cvg, unique_crashes,
+    </p>
+    <p>
+                unique_hangs, max_depth, eps); /* ignore errors */
+    </p>
+    <p>
+      
+    </p>
+    <p>
+        fflush(plot_file);
+    </p>
+  </div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_1493477470FM" /><div class="nodecontent">
+    <p>
+      在setup_dirs_fds函数中
+    </p>
+    <p>
+      tmp = alloc_printf("%s/plot_data", out_dir);
+    </p>
+    <p>
+        fd = open(tmp, O_WRONLY | O_CREAT | O_EXCL, 0600);
+    </p>
+    <p>
+        if (fd &lt; 0) PFATAL("Unable to create '%s'", tmp);
+    </p>
+    <p>
+        ck_free(tmp);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+        plot_file = fdopen(fd, "w");
+    </p>
+    <p>
+        if (!plot_file) PFATAL("fdopen() failed");
+    </p>
+    <p>
+      
+    </p>
+    <p>
+        fprintf(plot_file, "# unix_time, cycles_done, cur_path, paths_total, "
+    </p>
+    <p>
+                           "pending_total, pending_favs, map_size, unique_crashes, "
+    </p>
+    <p>
+                           "unique_hangs, max_depth, execs_per_sec\n");
+    </p>
+  </div></div></div></div><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_10946753FM" /><div class="nodecontent">define SAYF(x...)    printf(x) 在debug.h中</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N11275&quot;)" id="imgN11275" /><a id="FMID_845456812FM" /><div class="nodecontent"> map density : 0.01% / 0.01%</div><div class="content" id="N11275"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_847396984FM" /><div class="nodecontent">((double)queue_cur-&gt;bitmap_size) * 100 / MAP_SIZE 当前的样本覆盖率</div></div><div class="node"><img src="afl-fuzz-6-24.html_files/hide.png" class="hideshow" alt="hide" onClick="toggle(&quot;N11281&quot;)" id="imgN11281" /><a id="FMID_743984872FM" /><div class="nodecontent">t_byte_ratio</div><div class="content" id="N11281"><div class="node"><img src="afl-fuzz-6-24.html_files/leaf.png" class="hideshow" alt="leaf" /><a id="FMID_890297898FM" /><div class="nodecontent">t_bytes = count_non_255_bytes(virgin_bits);   t_byte_ratio = ((double)t_bytes * 100) / MAP_SIZE; 目前所有样本的覆盖率</div></div></div></div></div></div></div></div></div></div>
+</body></html>
