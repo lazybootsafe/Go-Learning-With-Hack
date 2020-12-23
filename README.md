@@ -11,11 +11,13 @@
 #### 目录说明  
 |目录|说明|
 |:---|:---|
-|basic-go| 第一章 go语言基础|  
-|example| 第二章 即联系示例代码存放|  
+|go-basic| 第一章 go语言基础|  
+|go-example| 第二章 即联系示例代码存放|  
 |example\code| 存在go程序代码文件处|  
-|gohacking| 第四章 使用go进行黑客工具研发章节代码|  
-|test-go|  对应go语言基础章节实验代码|  
+|go-advance|第三章 go进阶程序代码|  
+|go-hacking| 第四章 使用go进行黑客工具研发章节代码|  
+|go-audit|第五章 go底层研究 go安全|  
+|go-test|  对应go语言基础章节实验代码|  
 |screenshot| 对应代码截图等|  
 
 
@@ -58,6 +60,9 @@
 2.11 [优雅的Go语言](example/优雅的go.md)  
 
 PS:示例1-8 基础部分;9-~ 提高进阶部分;
+第三章 进阶篇  
+3.1
+
 
 第四章 实战篇  
 3.1 [go语言优势和程序构思](gohacking/thinking.md)  
@@ -73,9 +78,12 @@ PS:示例1-8 基础部分;9-~ 提高进阶部分;
 
 #### 联系我
 
-wx公众号 aokisec  
+wx公众号 `aokisec`  
 ![](screenshot/qrcode.png)  
-wx号 finger_xyz   
+wx号 
+- `finger_xyz`  
+- `fingerxyz`   
+
 看看就行 给不给star无所谓的:)  
 如有谬误,那怎么办,我也很绝望啊  
 
