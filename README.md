@@ -58,7 +58,7 @@
 2.10 示例10  
 2.11 [优雅的Go语言](go-example/优雅的go.md)  
 
-PS:示例1-8 基础部分;9-~ 提高进阶部分;  
+<del>PS:示例1-8 基础部分;9-~ 提高进阶部分;  
 ## 第三章 进阶篇  
 3.1 [进阶篇开篇词](go-advance/README.md)  
 
@@ -71,11 +71,13 @@ PS:示例1-8 基础部分;9-~ 提高进阶部分;
 4.5 [gohack开发之wfuzz-go改造](go-hack/go-wfuzz-recode)  
 4.6 [gohack开发之PYGO-port-scan](go-hack/go-port-scan)  
 4.7 [gohack开发之go匿名聊天](go-hack/go-nmtalk)  
+4.8 [gohack开发之go证书算法破解](go-hack/go-xray-crack/go-xray-crack.md)  
 4.x [代码赏析之kunpeng](go-hack/kunpeng/kunpeng.md)  
 
 ## 第五章 底层与安全篇
 
 5.1 [底层与安全篇开篇词](go-audit/README.md)  
+5.2 [环境准备](go-audit/5-2.md)  
 
 #### 联系我
 
