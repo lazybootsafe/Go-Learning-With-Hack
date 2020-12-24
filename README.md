@@ -1,5 +1,5 @@
 ## Go-learning-With-Hack
-### <font color="red">最后更新时间:2020-12-23</font>
+### <font color="red">最后更新时间:2020-12-24</font>
 
 犹豫了很久，还是选择把这个系列更新一下吧  
 说实话有种冲动把名字起为诸如什么《15天精通go黑客工具开发》这种~~  
@@ -78,6 +78,17 @@
 
 5.1 [底层与安全篇开篇词](go-audit/README.md)  
 5.2 [环境准备](go-audit/5-2.md)  
+5.3 [初始化 initial](go-audit/5-3.md)  
+5.4 [内存管理 malloc]()  
+5.5 [垃圾回收 garbage collector]()  
+5.6 [并发调度 goroutine]()  
+5.7 [通道 channel]()  
+5.8 [中文叫啥 Finalizer]()  
+5.9 [缓存池 pool]()  
+5.10 [延迟 defer]()  
+5.11 。。。。
+
+
 
 #### 联系我
 
