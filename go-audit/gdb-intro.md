@@ -22,6 +22,7 @@ gdb test
 
 现在GDB在运行当前的程序的环境中已经保留了一些有用的调试信息,我们只需打印出相应的变量,查看相应变量的类型及值：
 
+```
 (gdb) info locals
 isexit = 0
 count = 1
@@ -32,12 +33,12 @@ $1 = 1
 $2 = (chan int) 0xc210039060
 (gdb) whatis c
 type = chan int
-
+```
 
 每次输入c之后都会执行一次代码,又跳到下一次for循环,继续打印出来相应的信息,设想目前需要改变上下文相关变量的信息,跳过一些过程,得出修改后想要的结果：
 
  
-
+```
 (gdb) info locals
 isexit = 0
 count = 2
@@ -53,12 +54,12 @@ c: 3
 main end
 [LWP 11588 exited]
 [Inferior 1 (process 11588) exited normally]
- 
+``` 
 
 最后稍微思考一下，前面整个程序运行的过程中到底创建了多少个goroutine，每个goroutine都在做什么：
 
  
-
+```
 (gdb) run
 The program being debugged has been started already.
 Start it from the beginning? (y or n) y
@@ -81,7 +82,7 @@ Breakpoint 2, main.main () at /root/go-audit/go-test/test.go:25
 #4  0x0000000000415750 in ?? () at /usr/local/go/src/pkg/runtime/proc.c:1385
 #5  0x000000c210039060 in ?? ()
 #6  0x0000000000000000 in ?? ()
- 
+``` 
 
  
 
