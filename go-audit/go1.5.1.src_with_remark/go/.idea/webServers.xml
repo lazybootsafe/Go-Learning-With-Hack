@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="24eb5db0-7262-48d7-b3a9-930c018e1ed1" name="go-audit">
+        <fileTransfer accessType="SFTP" host="127.0.0.1" port="223" sshConfigId="359db51a-1723-4866-b9cc-382f68d52784" sshConfig="root@127.0.0.1:223 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
