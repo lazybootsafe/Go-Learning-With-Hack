@@ -44,7 +44,7 @@ var (
 func argv_index(argv **byte, i int32) *byte {
 	return *(**byte)(add(unsafe.Pointer(argv), uintptr(i)*ptrSize))
 }
-
+// 函数args整理命令行参数
 func args(c int32, v **byte) {
 	argc = c
 	argv = v
