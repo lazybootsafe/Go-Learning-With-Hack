@@ -37,6 +37,7 @@ const (
 //	call runtime·mstart
 //
 // The new G calls runtime·main.
+//几乎所有初始化构造都在这里被调用 上面列举了一些启动过程
 func schedinit() {
 	// raceinit must be the first call to race detector.
 	// In particular, it must be done before mallocinit below calls racemapshadow.
@@ -44,10 +45,11 @@ func schedinit() {
 	if raceenabled {
 		_g_.racectx = raceinit()
 	}
-
+	//系统线程数量限制
 	sched.maxmcount = 10000
 
 	// Cache the framepointer experiment.  This affects stack unwinding.
+	//栈 内存分配器 调度器相关初始化
 	framepointer_enabled = haveexperiment("framepointer")
 
 	tracebackinit()
@@ -56,12 +58,16 @@ func schedinit() {
 	mallocinit()
 	mcommoninit(_g_.m)
 
+	//处理命令行参数和环境变量
 	goargs()
 	goenvs()
+	//处理godebug gotrack 调试相关的环境变量设置
 	parsedebugvars()
+	//gc 垃圾回收初始化
 	gcinit()
 
 	sched.lastpoll = uint64(nanotime())
+	//通过CPU core 和gomaxprocs环境变量确定p的大小
 	procs := int(ncpu)
 	if n := atoi(gogetenv("GOMAXPROCS")); n > 0 {
 		if n > _MaxGomaxprocs {
@@ -69,6 +75,7 @@ func schedinit() {
 		}
 		procs = n
 	}
+	//调整p的大小
 	if procresize(int32(procs)) != nil {
 		throw("unknown runnable goroutine during bootstrap")
 	}

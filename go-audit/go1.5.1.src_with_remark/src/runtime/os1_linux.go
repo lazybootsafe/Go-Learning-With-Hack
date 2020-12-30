@@ -169,6 +169,7 @@ func newosproc0(stacksize uintptr, fn unsafe.Pointer) {
 var failallocatestack = []byte("runtime: failed to allocate stack for the new OS thread\n")
 var failthreadcreate = []byte("runtime: failed to create new OS thread\n")
 
+//函数osint作用是确定CPU数量
 func osinit() {
 	ncpu = getproccount()
 }

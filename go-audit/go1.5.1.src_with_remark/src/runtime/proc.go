@@ -6,7 +6,8 @@ package runtime
 
 import "unsafe"
 
-//go:linkname runtime_init runtime.init
+//runtime_init和main_init是编译器动态生成的
+//go:linkname runtime_init runtime.init符号名变化
 func runtime_init()
 
 //go:linkname main_init main.init
@@ -25,7 +26,8 @@ func main_main()
 var runtimeInitTime int64
 
 // The main goroutine.
-func main() {
+func main()
+	//执行栈最大限制 64bit是1gb 21bit是250m
 	g := getg()
 
 	// Racectx of m0->g0 is used only as the parent of the main goroutine.
@@ -44,6 +46,7 @@ func main() {
 	// Record when the world started.
 	runtimeInitTime = nanotime()
 
+	//启动系统的后台监控 定时gc 并发任务调度
 	systemstack(func() {
 		newm(sysmon, nil)
 	})
@@ -60,6 +63,7 @@ func main() {
 		throw("runtime.main not on m0")
 	}
 
+	//执行runtime所有的init 初始化函数
 	runtime_init() // must be before defer
 
 	// Defer unlock so that runtime.Goexit during init does the unlock too.
@@ -70,6 +74,7 @@ func main() {
 		}
 	}()
 
+	//启动gc后台操作
 	gcenable()
 
 	main_init_done = make(chan bool)
@@ -97,6 +102,7 @@ func main() {
 		cgocall(_cgo_notify_runtime_init_done, nil)
 	}
 
+	//执行用户逻辑入口main.main 就是一开始讲的用户定义
 	main_init()
 	close(main_init_done)
 
@@ -121,6 +127,7 @@ func main() {
 		gopark(nil, nil, "panicwait", traceEvGoStop, 1)
 	}
 
+	到这里执行结束 返回结束状态码
 	exit(0)
 	for {
 		var x *int32
