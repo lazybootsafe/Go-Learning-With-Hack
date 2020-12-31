@@ -99,11 +99,11 @@ const (
 )
 
 type mspan struct {
-	next     *mspan    // in a span linked list
+	next     *mspan    // in a span linked list 双向链表
 	prev     *mspan    // in a span linked list
-	start    pageID    // starting page number
-	npages   uintptr   // number of pages in span
-	freelist gclinkptr // list of free objects
+	start    pageID    // starting page number 起始序号 对应address>> _PageShift
+	npages   uintptr   // number of pages in span 页数
+	freelist gclinkptr // list of free objects 待分配的object链表
 	// sweep generation:
 	// if sweepgen == h->sweepgen - 2, the span needs sweeping
 	// if sweepgen == h->sweepgen - 1, the span is currently being swept

@@ -105,7 +105,7 @@ const (
 
 const (
 	_PageShift = 13
-	_PageSize  = 1 << _PageShift
+	_PageSize  = 1 << _PageShift //8kb
 	_PageMask  = _PageSize - 1
 )
 
