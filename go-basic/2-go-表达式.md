@@ -261,7 +261,7 @@ func main() {
     println(s)
   }
 
-  for range data{                  //仅迭代，不返回，可用来执行清空channel等操作。
+  for range data{                  //仅迭代，不反悔，可用来执行清空channel等操作。
 
   }
 }
@@ -274,7 +274,7 @@ code：
 func main() {
   data := [3]string{"a", "b", "c"}
 
-  for i, s := range data {
+  for i, s =: range data {
     println(&i, &s)
   }
 }
