@@ -26,10 +26,10 @@ var a, s = 100, "abc"   //不同类型的初始化值
 按照编程习惯，建议以组的方式整理多行变量定义，即用大括号美观一点。
 
 ```go
-var {
+var (
   x, y int
   a, s =100, "abc"
-}
+)
 ```
 
 ### 简短模式（short variable declaration）
