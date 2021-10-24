@@ -103,11 +103,9 @@
 
 #### 联系我
 
-wx公众号 `aokisec`  
-![](screenshot/qrcode.png)  
+
 wx号 
-- `finger_xyz`  
-- `fingerxyz`   
+- `finger_xyz`     
 
 看看就行 给不给star无所谓的:)  
 如有谬误,那怎么办,我也很绝望啊  
